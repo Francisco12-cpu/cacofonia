@@ -1,0 +1,830 @@
+{
+  "id": "orgao",
+  "bpm": 92,
+  "bpmProgressao": {
+    "porVolta": 6,
+    "maximo": 130
+  },
+  "compasso": "4/4",
+  "tom": "Dm",
+  "escala": "menor natural",
+  "silencioProcedural": false,
+  "credito": "Johann Sebastian Bach — \"Tocata e Fuga em Ré menor\", domínio público, arranjo 8-bit original.",
+  "trilhas": {
+    "melodia": [
+      {
+        "pos": 0,
+        "nota": "A5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 0.25,
+        "nota": "G5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 0.5,
+        "nota": "A5",
+        "duracao": 2
+      },
+      {
+        "pos": 4,
+        "nota": "G5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.25,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.5,
+        "nota": "E5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.75,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 5,
+        "nota": "C#5",
+        "duracao": 1
+      },
+      {
+        "pos": 6,
+        "nota": "D5",
+        "duracao": 2
+      },
+      {
+        "pos": 8,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 8.25,
+        "nota": "G4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 8.5,
+        "nota": "A4",
+        "duracao": 2
+      },
+      {
+        "pos": 12,
+        "nota": "E4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 12.5,
+        "nota": "F4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 13,
+        "nota": "C#4",
+        "duracao": 1
+      },
+      {
+        "pos": 14,
+        "nota": "D4",
+        "duracao": 2
+      },
+      {
+        "pos": 16,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.5,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.5,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.5,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.5,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.5,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.75,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.25,
+        "nota": "A5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.5,
+        "nota": "D6",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.75,
+        "nota": "A5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.25,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.5,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.75,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.5,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.75,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28,
+        "nota": "E5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.25,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.5,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.75,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29,
+        "nota": "G4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.5,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.75,
+        "nota": "E5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 30,
+        "nota": "D5",
+        "duracao": 2
+      }
+    ],
+    "harmonia": [
+      {
+        "pos": 0,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 0.25,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 0.5,
+        "nota": "F5",
+        "duracao": 2
+      },
+      {
+        "pos": 4,
+        "nota": "E5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.25,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.5,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 5,
+        "nota": "A4",
+        "duracao": 1
+      },
+      {
+        "pos": 6,
+        "nota": "A4",
+        "duracao": 2
+      },
+      {
+        "pos": 8,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 8.25,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 8.5,
+        "nota": "F4",
+        "duracao": 2
+      },
+      {
+        "pos": 12,
+        "nota": "C#4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 12.5,
+        "nota": "C#4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 13,
+        "nota": "A3",
+        "duracao": 1
+      },
+      {
+        "pos": 14,
+        "nota": "A3",
+        "duracao": 2
+      },
+      {
+        "pos": 16,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.5,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16.75,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.5,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 17.75,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.5,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18.75,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.25,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.5,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19.75,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.25,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.5,
+        "nota": "C#4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20.75,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.25,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.5,
+        "nota": "C#4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 21.75,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.25,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.5,
+        "nota": "C#4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22.75,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.25,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.5,
+        "nota": "C#4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23.75,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24,
+        "nota": "A3",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.25,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.25,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.5,
+        "nota": "A5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 25.75,
+        "nota": "F5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26,
+        "nota": "D5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26.75,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27,
+        "nota": "A3",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.25,
+        "nota": "D4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.5,
+        "nota": "F4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27.75,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.25,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.5,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28.75,
+        "nota": "C#4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.25,
+        "nota": "E4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.5,
+        "nota": "A4",
+        "duracao": 0.25
+      },
+      {
+        "pos": 29.75,
+        "nota": "C#5",
+        "duracao": 0.25
+      },
+      {
+        "pos": 30,
+        "nota": "A4",
+        "duracao": 2
+      }
+    ],
+    "baixo": [
+      {
+        "pos": 0,
+        "nota": "D2",
+        "duracao": 4
+      },
+      {
+        "pos": 4,
+        "nota": "A1",
+        "duracao": 4
+      },
+      {
+        "pos": 8,
+        "nota": "D2",
+        "duracao": 4
+      },
+      {
+        "pos": 12,
+        "nota": "A1",
+        "duracao": 4
+      },
+      {
+        "pos": 16,
+        "nota": "D2",
+        "duracao": 4
+      },
+      {
+        "pos": 20,
+        "nota": "A1",
+        "duracao": 4
+      },
+      {
+        "pos": 24,
+        "nota": "D2",
+        "duracao": 4
+      },
+      {
+        "pos": 28,
+        "nota": "A1",
+        "duracao": 4
+      }
+    ],
+    "bateria": [
+      {
+        "pos": 30,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 30.5,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 31,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 31.25,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 31.5,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 31.75,
+        "voz": "snare",
+        "duracao": 0.25
+      }
+    ],
+    "arpejo": []
+  },
+  "secoes": [
+    {
+      "nome": "volta-1",
+      "compassos": 8
+    }
+  ]
+}

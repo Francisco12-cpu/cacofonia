@@ -1,0 +1,950 @@
+{
+  "id": "cisne",
+  "bpm": 96,
+  "bpmProgressao": {
+    "porVolta": 6,
+    "maximo": 126
+  },
+  "compasso": "4/4",
+  "tom": "Am",
+  "escala": "menor natural",
+  "silencioProcedural": false,
+  "credito": "Camille Saint-Saëns — \"O Cisne\" (O Carnaval dos Animais), domínio público, arranjo 8-bit original.",
+  "trilhas": {
+    "melodia": [
+      {
+        "pos": 0,
+        "nota": "E5",
+        "duracao": 2
+      },
+      {
+        "pos": 2,
+        "nota": "A4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 2.5,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 3,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 3.5,
+        "nota": "D5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 4,
+        "nota": "E5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 5.5,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 6,
+        "nota": "E5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 7.5,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 8,
+        "nota": "E5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 9.5,
+        "nota": "A4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 10,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 10.5,
+        "nota": "A4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 11,
+        "nota": "F4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 11.5,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 12,
+        "nota": "A4",
+        "duracao": 4
+      },
+      {
+        "pos": 16,
+        "nota": "D5",
+        "duracao": 2
+      },
+      {
+        "pos": 18,
+        "nota": "G4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 18.5,
+        "nota": "A4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 19,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 19.5,
+        "nota": "C5",
+        "duracao": 0.5
+      },
+      {
+        "pos": 20,
+        "nota": "D5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 21.5,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 22,
+        "nota": "D5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 23.5,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 24,
+        "nota": "D5",
+        "duracao": 1.5
+      },
+      {
+        "pos": 25.5,
+        "nota": "G4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 26,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 26.5,
+        "nota": "G4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 27,
+        "nota": "E4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 27.5,
+        "nota": "B4",
+        "duracao": 0.5
+      },
+      {
+        "pos": 28,
+        "nota": "E5",
+        "duracao": 4
+      }
+    ],
+    "harmonia": [],
+    "baixo": [
+      {
+        "pos": 0,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 1,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 2,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 3,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 4,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 5,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 6,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 7,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 8,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 9,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 10,
+        "nota": "F2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 11,
+        "nota": "A2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 12,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 13,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 14,
+        "nota": "A1",
+        "duracao": 0.5
+      },
+      {
+        "pos": 15,
+        "nota": "C2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 16,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 17,
+        "nota": "B2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 18,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 19,
+        "nota": "B2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 20,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 21,
+        "nota": "B2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 22,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 23,
+        "nota": "B2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 24,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 25,
+        "nota": "B2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 26,
+        "nota": "E2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 27,
+        "nota": "G2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 28,
+        "nota": "E2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 29,
+        "nota": "G#2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 30,
+        "nota": "E2",
+        "duracao": 0.5
+      },
+      {
+        "pos": 31,
+        "nota": "G#2",
+        "duracao": 0.5
+      }
+    ],
+    "bateria": [
+      {
+        "pos": 0,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 0,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 1,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 2,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 2,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 2.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 3,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 4,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 4,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 5,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 6,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 6,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 6.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 7,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 8,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 8,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 9,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 10,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 10,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 10.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 11,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 12,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 12,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 13,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 14,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 14,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 14.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 15,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 16,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 16,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 17,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 18,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 18,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 18.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 19,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 20,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 20,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 21,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 22,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 22,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 22.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 23,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 24,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 24,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 25,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 26,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 26,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 26.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 27,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 28,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 28,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 29,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 30,
+        "voz": "snare",
+        "duracao": 0.25
+      },
+      {
+        "pos": 30,
+        "voz": "hat",
+        "duracao": 0.125
+      },
+      {
+        "pos": 30.5,
+        "voz": "kick",
+        "duracao": 0.25
+      },
+      {
+        "pos": 31,
+        "voz": "hat",
+        "duracao": 0.125
+      }
+    ],
+    "arpejo": [
+      {
+        "pos": 0,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 0.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 1,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 1.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 2,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 2.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 3,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 3.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 4,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 4.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 5,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 5.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 6,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 6.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 7,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 7.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 8,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 8.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 9,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 9.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 10,
+        "nota": "F5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 10.5,
+        "nota": "A5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 11,
+        "nota": "C6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 11.5,
+        "nota": "A5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 12,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 12.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 13,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 13.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 14,
+        "nota": "A4",
+        "duracao": 0.125
+      },
+      {
+        "pos": 14.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 15,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 15.5,
+        "nota": "C5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 16,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 16.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 17,
+        "nota": "D6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 17.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 18,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 18.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 19,
+        "nota": "D6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 19.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 20,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 20.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 21,
+        "nota": "D6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 21.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 22,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 22.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 23,
+        "nota": "D6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 23.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 24,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 24.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 25,
+        "nota": "D6",
+        "duracao": 0.125
+      },
+      {
+        "pos": 25.5,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 26,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 26.5,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 27,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 27.5,
+        "nota": "G5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 28,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 28.5,
+        "nota": "G#5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 29,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 29.5,
+        "nota": "G#5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 30,
+        "nota": "E5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 30.5,
+        "nota": "G#5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 31,
+        "nota": "B5",
+        "duracao": 0.125
+      },
+      {
+        "pos": 31.5,
+        "nota": "G#5",
+        "duracao": 0.125
+      }
+    ]
+  },
+  "secoes": [
+    {
+      "nome": "volta-1",
+      "compassos": 8
+    }
+  ]
+}
