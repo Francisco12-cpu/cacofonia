@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CACOFONIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="root">
+  <div id="stage" class="hidden"><canvas id="gl"></canvas><canvas id="ui"></canvas></div>
+  <div id="hud" class="hidden">
+    <div><div class="lbl"><span id="pLbl">ECO</span><span id="pNum">100/100</span></div><div class="bar"><div id="pFill" class="fill"></div></div></div>
+    <button id="pauseBtn" aria-label="Pausar">II</button>
+    <div><div class="lbl"><span id="bNum">0</span><span id="bLbl">CHEFE</span></div><div class="bar" style="background:#333"><div id="bFill" class="fill"></div></div></div>
+  </div>
+  <button id="atkBtn" class="hidden" aria-label="Coletar / Responder">COLETAR</button>
+  <div id="hint" class="hidden"></div>
+  <div id="deviceIcon" class="hidden"></div>
+
+  <div id="sTitle" class="screen hidden"><div class="box">
+    <h1 class="logo-big" id="tLogo" aria-label="CACOFONIA"></h1>
+    <div class="tag2">UM RPG DE RITMO EM 8 BITS</div>
+    <div style="height:18px"></div>
+    <button class="opt primary" id="tPlay">JOGAR</button>
+    <button class="opt" id="tEdit">EDITOR DE COREOGRAFIA</button>
+    <button class="opt" id="tSet">AJUSTES</button>
+    <button class="opt" id="tCred">CRÉDITOS</button>
+  </div>
+  <div id="tFoot">UM JOGO DE <b>FRANCISCO AUDIR</b><br><a href="https://instagram.com/filho.af" target="_blank" rel="noopener">@filho.af</a></div>
+  </div>
+
+  <div id="sBossSelect" class="screen hidden"><div class="box" style="max-width:420px">
+    <p class="big">ESCOLHA UM CHEFE</p>
+    <div id="bossList" class="list"></div>
+    <button class="opt" id="bsBack">VOLTAR</button>
+  </div></div>
+
+  <div id="sSettings" class="screen hidden"><div class="box">
+    <p class="big">AJUSTES</p>
+    <button class="opt" id="sDiff">DIFICULDADE <small id="sDiffV"></small></button>
+    <label class="row">EFEITOS REDUZIDOS <input type="checkbox" id="sRed"></label>
+    <label class="row">VOLUME <input type="range" id="sVol" min="0" max="100"></label>
+    <button class="opt" id="sBack">VOLTAR</button>
+  </div></div>
+
+  <div id="sCredits" class="screen hidden"><div class="box" style="max-width:380px"><p class="big">CRÉDITOS</p>
+    <div class="roll"><div class="rollIn" id="creditsRoll"></div></div>
+    <button class="opt" id="crBack">VOLTAR</button></div></div>
+
+  <div id="sPause" class="screen glass hidden"><div class="box"><p class="big">PAUSA</p>
+    <button class="opt" id="pRes">CONTINUAR</button><button class="opt" id="pQuit">DESISTIR DA LUTA</button></div></div>
+
+  <div id="sWin" class="screen hidden"><div class="box"><p class="big" style="color:var(--yellow)">VITÓRIA!</p>
+    <div class="stats"><div><b id="wC">0</b>COMBO</div><div><b id="wDouradas">0</b>DOURADAS</div></div>
+    <button class="opt" id="winOk">CONTINUAR</button></div></div>
+
+  <div id="sLose" class="screen lose hidden"><div class="box"><p class="big" style="color:var(--pink)">O SILÊNCIO VENCEU</p>
+    <button class="opt" id="lRetry">TENTAR DE NOVO</button><button class="opt" id="lMap">ESCOLHER OUTRO CHEFE</button></div></div>
+
+  <div id="sErr" class="screen hidden"><div class="box"><p class="big">OPS</p><p class="txt">Seu navegador não conseguiu abrir o palco 3D (WebGL). Tente outro navegador ou atualize o sistema.</p><button class="opt" id="errOk">VOLTAR</button></div></div>
+
+  <div id="sEditor" class="screen hidden" style="padding:0;flex-direction:column;align-items:stretch;justify-content:flex-start;">
+    <div style="display:flex;flex-wrap:wrap;gap:5px;padding:8px 8px 4px;">
+      <button class="opt ed" id="edBoss"></button><button class="opt ed" id="edTrack"></button><button class="opt ed" id="edTool"></button>
+      <button class="opt ed" id="edPlay">▶ OUVIR</button><button class="opt ed" id="edTest">TESTAR</button>
+      <button class="opt ed" id="edClear">LIMPAR</button><button class="opt ed" id="edExp">EXPORTAR</button><button class="opt ed" id="edImp">IMPORTAR</button><button class="opt ed" id="edExit">SAIR</button>
+    </div>
+    <div class="txt" id="edHelp" style="padding:0 10px 6px;font-size:7px;line-height:1.8;color:var(--dim)">Toque numa trilha para colocar uma nota com a ferramenta escolhida — ela já toca o som na música final. Toque de novo para apagar. Arraste para rolar.</div>
+    <canvas id="edCv"></canvas>
+  </div>
+
+  <div id="flash"></div>
+  <div id="crt"></div>
+</div>
+<script type="module" src="/main.js"></script>
+</body>
+</html>

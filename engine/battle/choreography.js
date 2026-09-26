@@ -35,7 +35,8 @@ export function buildChoreographyFromMelody(song, noteTypes, opts = {}) {
       beat: nota.pos,
       lanes: [lane],
       type: tipoFinalId,
-      len: ehLonga ? Math.max(0.75, nota.duracao * 0.8) : 0
+      len: ehLonga ? Math.max(0.75, nota.duracao * 0.8) : 0,
+      nota: nota.nota
     });
   }
 
