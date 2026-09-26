@@ -1,0 +1,33 @@
+{
+  "id": "dj",
+  "nome": "DJ Tamborim",
+  "musica": "dj",
+  "hpMax": 470,
+  "tier": 1,
+  "final": false,
+  "cor": "#f5ff3d",
+  "sprite": "dj",
+  "cenario": { "sky": "#081a24", "bg": "eq" },
+  "efeitosEspeciais": [
+    { "tipo": "drop-flash", "aPartirDaVolta": 1, "periodoBatidas": 32, "inicioFracao": 0.75 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "YO! Bem-vindo à pista mais silenciosa do mundo!",
+      "O Silêncio levou o som, mas deixou a batida.",
+      "E quando o DROP cair, segura o grave! Bora!"
+    ],
+    "vitoria": [
+      "Caramba... o som voltou nos meus fones!",
+      "Valeu, parceiro. A Nota-Semente é sua."
+    ],
+    "provocacoes": [
+      "Ei! Esse doeu!",
+      "Agora é breakbeat, bebê!"
+    ],
+    "posLibertacao": [
+      "Tô montando um baile pra quando o mundo voltar a cantar."
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "maestro",
+  "nome": "Maestro Vórtice",
+  "musica": "maestro",
+  "hpMax": 440,
+  "tier": 1,
+  "final": false,
+  "cor": "#ff2f8e",
+  "sprite": "maestro",
+  "cenario": { "sky": "#1a0626", "bg": "stars" },
+  "efeitosEspeciais": [
+    { "tipo": "camera-giro", "aPartirDaVolta": 2 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "...QUEM OUSA ENTRAR NO MEU SALÃO?",
+      "O Silêncio me deu uma partitura nova. Ela só acelera.",
+      "Dance, pequeno Eco. Dance até cair!"
+    ],
+    "vitoria": [
+      "Minha batuta... está leve de novo.",
+      "Obrigado, Eco. Leve esta Nota-Semente."
+    ],
+    "provocacoes": [
+      "Hmph. Um acerto de sorte.",
+      "Você não vai aguentar o andamento!"
+    ],
+    "posLibertacao": [
+      "Eu estava preso num compasso sem fim.",
+      "Agora rejo só o que me faz feliz."
+    ]
+  }
+}

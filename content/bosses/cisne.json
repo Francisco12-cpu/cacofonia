@@ -1,0 +1,33 @@
+{
+  "id": "cisne",
+  "nome": "Cisne de Cristal",
+  "musica": "cisne",
+  "hpMax": 560,
+  "tier": 2,
+  "final": false,
+  "cor": "#bfe9ff",
+  "sprite": "cisne",
+  "cenario": { "sky": "#05102a", "bg": "lake" },
+  "efeitosEspeciais": [
+    { "tipo": "reflexo", "aPartirDaVolta": 1, "periodoBatidas": 32, "inicioFracao": 0.75 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "Shhh. Você está pisando no meu lago.",
+      "Aqui tudo é reflexo. O que vem da esquerda, vem também da direita.",
+      "E às vezes... o céu vira o chão."
+    ],
+    "vitoria": [
+      "Meu reflexo... voltou a sorrir.",
+      "Leve esta Nota-Semente. Ela brilha como a lua na água."
+    ],
+    "provocacoes": [
+      "Tudo tem um espelho.",
+      "Gire, pequeno, gire!"
+    ],
+    "posLibertacao": [
+      "O lago canta de novo. Obrigada."
+    ]
+  }
+}

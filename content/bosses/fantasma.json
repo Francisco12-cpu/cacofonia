@@ -1,0 +1,33 @@
+{
+  "id": "fantasma",
+  "nome": "Cantora Fantasma",
+  "musica": "fantasma",
+  "hpMax": 480,
+  "tier": 1,
+  "final": false,
+  "cor": "#8fffff",
+  "sprite": "fantasma",
+  "cenario": { "sky": "#04121a", "bg": "fog" },
+  "efeitosEspeciais": [
+    { "tipo": "apagao", "aPartirDaVolta": 1, "periodoBatidas": 16 }
+  ],
+  "janelasDeAtaque": [ { "batida": 23.625 }, { "batida": 55.125 } ],
+  "falas": {
+    "intro": [
+      "...shhh...",
+      "Eu cantava para quem eu amava. Agora só resta o escuro.",
+      "Se não consegue ver... escute."
+    ],
+    "vitoria": [
+      "A melodia... eu me lembro dela.",
+      "Obrigada por me devolver a luz, Eco."
+    ],
+    "provocacoes": [
+      "Você ainda me ouve?",
+      "Dance no escuro comigo."
+    ],
+    "posLibertacao": [
+      "Vou cantar de novo, bem baixinho, para a vila dormir."
+    ]
+  }
+}

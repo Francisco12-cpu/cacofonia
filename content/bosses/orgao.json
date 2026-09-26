@@ -1,0 +1,34 @@
+{
+  "id": "orgao",
+  "nome": "Órgão-Mecânico",
+  "musica": "orgao",
+  "hpMax": 580,
+  "tier": 3,
+  "final": false,
+  "cor": "#ff4a4a",
+  "sprite": "orgao",
+  "cenario": { "sky": "#1a0505", "bg": "pipes" },
+  "efeitosEspeciais": [
+    { "tipo": "vitral", "aPartirDaVolta": 1, "periodoBatidas": 32, "inicioFracao": 0.5 },
+    { "tipo": "espelho", "aPartirDaVolta": 2, "periodoBatidas": 32, "inicioFracao": 0.75 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "TOOOOOOM.",
+      "EU SOU O ÓRGÃO DA CIDADELA. MEUS TUBOS FORAM FEITOS PARA TROVEJAR.",
+      "E MEUS VITRAIS VÃO CONFUNDIR SEUS OLHOS."
+    ],
+    "vitoria": [
+      "...tooom. meus tubos... estão afinados de novo.",
+      "LEVE A NOTA-SEMENTE. E OBRIGADO."
+    ],
+    "provocacoes": [
+      "ACORDE!",
+      "SINTA O PEDAL!"
+    ],
+    "posLibertacao": [
+      "TOM. Agora toco só aos domingos."
+    ]
+  }
+}

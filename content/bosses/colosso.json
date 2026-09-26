@@ -1,0 +1,33 @@
+{
+  "id": "colosso",
+  "nome": "Colosso do Destino",
+  "musica": "colosso",
+  "hpMax": 600,
+  "tier": 3,
+  "final": false,
+  "cor": "#ff6a00",
+  "sprite": "colosso",
+  "cenario": { "sky": "#200800", "bg": "sun" },
+  "efeitosEspeciais": [
+    { "tipo": "terremoto", "aPartirDaVolta": 1, "periodoBatidas": 32, "inicioFracao": 0.75 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "TA. TA. TA. TUM.",
+      "ASSIM O DESTINO BATE À PORTA.",
+      "TRÊS AVISOS. UM GOLPE. SEMPRE."
+    ],
+    "vitoria": [
+      "...o destino... mudou.",
+      "VOCÊ BATEU MAIS FORTE QUE EU. TOME A NOTA-SEMENTE."
+    ],
+    "provocacoes": [
+      "TA. TA. TA...",
+      "TUM!"
+    ],
+    "posLibertacao": [
+      "TA-TA-TA... tum. Hoje eu bato só por música."
+    ]
+  }
+}

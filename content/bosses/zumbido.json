@@ -1,0 +1,33 @@
+{
+  "id": "zumbido",
+  "nome": "Rainha Zumbido",
+  "musica": "zumbido",
+  "hpMax": 520,
+  "tier": 2,
+  "final": false,
+  "cor": "#f5ff3d",
+  "sprite": "zumbido",
+  "cenario": { "sky": "#1f1600", "bg": "hive" },
+  "efeitosEspeciais": [
+    { "tipo": "avanco-rapido", "aPartirDaVolta": 1, "periodoBatidas": 32, "inicioFracao": 0.5 }
+  ],
+  "janelasDeAtaque": [ { "batida": 22.5 }, { "batida": 52.5 } ],
+  "falas": {
+    "intro": [
+      "BZZZ! Um intruso na minha colmeia!",
+      "O Silêncio me prometeu que ninguém mais ouviria meu zumbido.",
+      "Então vou zumbir MAIS RÁPIDO que qualquer um consegue ouvir!"
+    ],
+    "vitoria": [
+      "Bzz... ufa. Minhas asas estavam cansadas.",
+      "Tome, pequeno. Uma Nota-Semente doce como mel."
+    ],
+    "provocacoes": [
+      "Siga a escala se puder!",
+      "O enxame está chegando!"
+    ],
+    "posLibertacao": [
+      "Bzz. Agora eu zumbo só por diversão."
+    ]
+  }
+}

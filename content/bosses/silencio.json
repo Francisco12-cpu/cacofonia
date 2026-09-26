@@ -1,0 +1,32 @@
+{
+  "id": "silencio",
+  "nome": "O Grande Silêncio",
+  "musica": "silencio",
+  "hpMax": 820,
+  "tier": 3,
+  "final": true,
+  "cor": "#ffffff",
+  "sprite": "silencio",
+  "cenario": { "sky": "#000000", "bg": "void" },
+  "efeitosEspeciais": [
+    { "tipo": "silencio", "aPartirDaVolta": 1, "periodoBatidas": 16, "moduloCiclos": 3, "faseSilenciosa": 2, "espelharAPartirDaVolta": 2 }
+  ],
+  "janelasDeAtaque": [ { "batida": 24 }, { "batida": 56 } ],
+  "falas": {
+    "intro": [
+      "...",
+      "Eu sou o que sobra quando a música acaba.",
+      "Por que devolver o som a um mundo tão barulhento?",
+      "Venha, Eco. Vou te ensinar o silêncio."
+    ],
+    "vitoria": [
+      "...então era isso que eu estava perdendo.",
+      "Uma pausa só existe entre duas notas.",
+      "Deixe-me ser a pausa. Não o fim."
+    ],
+    "provocacoes": [
+      "Escute o nada.",
+      "Quando a música some, você some junto."
+    ]
+  }
+}
