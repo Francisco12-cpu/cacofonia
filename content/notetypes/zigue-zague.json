@@ -1,0 +1,13 @@
+{
+  "id": "zigue-zague",
+  "nome": "Zigue-zague",
+  "forma": "losango",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#b066ff",
+  "instrumento": "arp",
+  "dano": 14,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "zigzag", "amplitudePistas": 1.3, "ciclosPorTrajeto": 1.1 }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "dourada",
+  "nome": "Dourada",
+  "forma": "anel",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#ffc300",
+  "instrumento": "lead",
+  "dano": 12,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" },
+  "coletavel": true
+}

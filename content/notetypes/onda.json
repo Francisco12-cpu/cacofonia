@@ -1,0 +1,13 @@
+{
+  "id": "onda",
+  "nome": "Onda",
+  "forma": "placa",
+  "pistas": 5,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#8fd8ff",
+  "instrumento": "kick",
+  "dano": 16,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" }
+}

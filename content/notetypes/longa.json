@@ -1,0 +1,15 @@
+{
+  "id": "longa",
+  "nome": "Longa",
+  "forma": "prisma",
+  "pistas": 1,
+  "altura": "alta",
+  "duracao": 1,
+  "duracaoVariavel": true,
+  "cor": "#ff8a2b",
+  "instrumento": "bass",
+  "dano": 8,
+  "tiqueDano": { "intervalo": 0.35 },
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" }
+}

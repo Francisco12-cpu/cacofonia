@@ -1,0 +1,13 @@
+{
+  "id": "parede",
+  "nome": "Parede",
+  "forma": "prisma",
+  "pistas": 1,
+  "altura": "alta",
+  "duracao": 0,
+  "cor": "#ff2f8e",
+  "instrumento": "brass",
+  "dano": 18,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" }
+}

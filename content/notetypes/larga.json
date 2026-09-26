@@ -1,0 +1,13 @@
+{
+  "id": "larga",
+  "nome": "Larga",
+  "forma": "placa",
+  "pistas": 2,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#f5ff3d",
+  "instrumento": "harm",
+  "dano": 15,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" }
+}

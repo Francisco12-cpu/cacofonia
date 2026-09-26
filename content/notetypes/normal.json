@@ -1,0 +1,13 @@
+{
+  "id": "normal",
+  "nome": "Nota",
+  "forma": "esfera",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#2be9ff",
+  "instrumento": "lead",
+  "dano": 12,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "reto" }
+}
