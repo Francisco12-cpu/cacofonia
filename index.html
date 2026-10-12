@@ -55,6 +55,7 @@
     <button class="opt" id="pRes">CONTINUAR</button><button class="opt" id="pQuit">DESISTIR DA LUTA</button></div></div>
 
   <div id="sWin" class="screen hidden"><div class="box"><p class="big" style="color:var(--yellow)">VITÓRIA!</p>
+    <p class="txt fala" id="wFala"></p>
     <div class="stats"><div><b id="wC">0</b>COMBO</div><div><b id="wDouradas">0</b>DOURADAS</div></div>
     <button class="opt" id="winOk">CONTINUAR</button></div></div>
 
@@ -67,11 +68,21 @@
     <div style="display:flex;flex-wrap:wrap;gap:5px;padding:8px 8px 4px;">
       <button class="opt ed" id="edBoss"></button><button class="opt ed" id="edTrack"></button><button class="opt ed" id="edTool"></button>
       <button class="opt ed" id="edPlay">▶ OUVIR</button><button class="opt ed" id="edTest">TESTAR</button>
-      <button class="opt ed" id="edClear">LIMPAR</button><button class="opt ed" id="edExp">EXPORTAR</button><button class="opt ed" id="edImp">IMPORTAR</button><button class="opt ed" id="edExit">SAIR</button>
+      <button class="opt ed" id="edClear">LIMPAR</button><button class="opt ed" id="edReset">RESTAURAR</button><button class="opt ed" id="edExp">EXPORTAR</button><button class="opt ed" id="edImp">IMPORTAR</button><button class="opt ed" id="edExit">SAIR</button>
     </div>
-    <div class="txt" id="edHelp" style="padding:0 10px 6px;font-size:7px;line-height:1.8;color:var(--dim)">Toque numa trilha para colocar uma nota com a ferramenta escolhida — ela já toca o som na música final. Toque de novo para apagar. Arraste para rolar.</div>
+    <div class="txt" id="edHelp" style="padding:0 10px 6px;font-size:7px;line-height:1.8;color:var(--dim)"><span id="edInfo" style="color:var(--cyan)"></span><br>EM CIMA: toque numa linha para compor a melodia (só notas do tom — já toca na música final). EMBAIXO: toque numa pista para pôr um ataque com a ferramenta. Toque de novo apaga. Arraste para rolar · Ctrl+roda dá zoom.</div>
     <canvas id="edCv"></canvas>
   </div>
+
+  <div id="sDialog" class="screen hidden"><div class="dlg">
+    <canvas id="dPortrait" class="dlg-portrait"></canvas>
+    <div class="dlg-box">
+      <div class="dlg-name" id="dName"></div>
+      <p class="dlg-text" id="dText"></p>
+      <span class="dlg-next hidden" id="dNext">▼</span>
+    </div>
+    <button class="dlg-skip" id="dSkip">PULAR ▶▶</button>
+  </div></div>
 
   <div id="flash"></div>
   <div id="crt"></div>

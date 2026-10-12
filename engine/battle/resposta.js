@@ -29,11 +29,17 @@ export function createMelodyCollector() {
   };
 }
 
-/** @param melodia — snapshot de createMelodyCollector(); @param opts.intervaloBatidas espaçamento entre as barras de tempo */
+/**
+ * @param melodia — snapshot de createMelodyCollector()
+ * @param opts.intervaloBatidas espaçamento entre as barras de tempo
+ * @param opts.inicioBatidas batidas de preparo antes da 1ª barra (sem isso a 1ª
+ *   nota cairia no mesmo instante em que a fase aparece — impossível de acertar)
+ */
 export function startResponsePhase(melodia, opts = {}) {
   const intervaloBatidas = opts.intervaloBatidas ?? 1;
+  const inicioBatidas = opts.inicioBatidas ?? 0;
   return {
-    notas: melodia.map((n, i) => ({ nota: n.nota, janelaCentro: i * intervaloBatidas })),
+    notas: melodia.map((n, i) => ({ nota: n.nota, janelaCentro: inicioBatidas + i * intervaloBatidas })),
     respostas: [],
     indiceAtual: 0,
     encerrada: melodia.length === 0

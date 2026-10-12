@@ -81,10 +81,14 @@ export function createSongPlayer(synths, song, opts = {}) {
       Tone.Transport.cancel(0);
       Tone.Transport.position = 0;
     },
-    /** Beat atual estimado a partir do relógio de áudio (equivalente a `nowBeat()` do protótipo). */
+    /**
+     * Beat atual da música estimado a partir do relógio de áudio (equivalente
+     * a `nowBeat()` do protótipo). Durante a contagem (`countIn`) é negativo,
+     * então a batida 0 da música é sempre a batida 0 do gráfico de ataques.
+     */
     nowBeat(latencySeconds = 0) {
       const ticks = Tone.Transport.getTicksAtTime(Math.max(0, Tone.now() - latencySeconds));
-      return ticks / Tone.Transport.PPQ;
+      return ticks / Tone.Transport.PPQ - (opts.countIn || 0);
     }
   };
 }

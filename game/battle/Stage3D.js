@@ -85,7 +85,8 @@ export class Stage3D {
 
     Object.assign(this, {
       renderer, scene, cam, edgeMat, pillarMat, hl, beatLines, pillars, notesGroup, boss, hero, heroTex, heroTex2, ghosts,
-      speed, burst, shadow, rings, G, materialCache: new Map(), pools: {}, bossTex: {}, bossTexW: {}, bg: null
+      speed, burst, shadow, rings, G, materialCache: new Map(), pools: {}, bossTex: {}, bossTexW: {}, bg: null,
+      white: new THREE.Color(0xffffff)
     });
   }
 
