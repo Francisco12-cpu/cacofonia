@@ -411,86 +411,124 @@ export const BOSS_ART = {
   }
 };
 
-/** Eco em 24 px: costas (batalha) e frente (retratos, vitória). */
-const ECO_COSTAS = [
-  '............',
-  '........WWWW',
-  '......WWCCCC',
-  '.....WWWWCCC',
-  '....WWWWWWWW',
-  '...WWWWWWWWW',
-  '..CWWWWWWWWW',
-  '.CCWWWWWWWWW',
-  '.CCWWWWWWWWW',
-  '.CCWWWWWWWWW',
-  '..CWWWWWWWWW',
-  '...WWWWWWWWW',
-  '....WWWWWWWW',
-  '.....rrrrrrr',
-  '....rrrrrrrr',
-  '....CCCCCCCC',
-  '...CCCCCCCCC',
-  '..cCCCCCCCCC',
-  '..cCCCCCCCCC',
-  '..ccCCCCCCCC',
-  '..WW.CCCCCCC',
-  '.....CCCCCCC',
-  '......CCC...',
-  '......CCC...',
-  '.....NNNN...',
-  '............'
+/**
+ * Eco em 24×26: costas (batalha) e frente (retratos, vitória). Desenho
+ * assimétrico (sem `mirror`): arco do fone por cima da cabeça redonda, conchas com
+ * brilho, cachecol com a ponta voando, mochila-caixa de som nas costas,
+ * braços e pernas separados para os quadros de animação lerem bem.
+ */
+const ECO_PERNAS = [
+  '......cccccccccccc......',
+  '......cccc....cccc......',
+  '.....NNNNN....NNNNN.....',
+  '.....nnnnn....nnnnn.....'
 ];
-const ECO_FRENTE = ECO_COSTAS.map((r, i) => (
-  i === 7 ? '.CCWWWKKWWWW' : i === 8 ? '.CCWWWKKWWWW' : i === 10 ? '..CWbbWWWWWW' : i === 11 ? '...WWWWWWKKK' : r
-));
+const ECO_CABECA = [
+  '........................',
+  '........ssssssss........',
+  '......ssWWWWWWWWss......',
+  '.....sWWWWWWWWWWWWs.....',
+  '....sWWWWWWWWWWWWWWs....',
+  '....sWWWWWWWWWWWWWWs....',
+  '...CCWWWWWWWWWWWWWWCC...',
+  '..CCCCWWWWWWWWWWWWCCCC..',
+  '..CLCCWWWWWWWWWWWWCCLC..',
+  '..CCCCWWWWWWWWWWWWCCCC..',
+  '..cCCCWWWWWWWWWWWWCCCc..',
+  '...ccWWWWWWWWWWWWWWcc...',
+  '....WWWWWWWWWWWWWWWW....',
+  '.....WWWWWWWWWWWWWW.....'
+];
+const ECO_COSTAS = [
+  ...ECO_CABECA,
+  '.....rrrrrrrrrrrrrr.....',
+  '....rrrrrrrrrrrrrrrrrr..',
+  '...cCCCmmmmmmmmmmCCCcrQ.',
+  '..ccCCCmSSSSSSSSmCCCccrQ',
+  '..ccCCCmSKKSSKKSmCCCcc.Q',
+  '..ccCCCmSKKSSKKSmCCCcc..',
+  '..WWCCCmSSSSSSSSmCCCWW..',
+  '..WW.CCmmmmmmmmmmCC.WW..',
+  ...ECO_PERNAS
+];
+const ECO_FRENTE = [
+  ...ECO_CABECA.slice(0, 7),
+  '..CCCCWWKKWWWWKKWWCCCC..',
+  '..CLCCWWKKWWWWKKWWCCLC..',
+  '..CCCCWbbWWWWWWbbWCCCC..',
+  '..cCCCWWWWWKKWWWWWCCCc..',
+  ...ECO_CABECA.slice(11),
+  '.....rrrrrrrrrrrrrr.....',
+  '....rrrrrrrrrrrrrrrr....',
+  '...cCCCCCCCrrCCCCCCCc...',
+  '..ccCCCCCCCrQCCCCCCCcc..',
+  '..ccCCCCCCCcQCCCCCCCcc..',
+  '..ccCCCCCCCccCCCCCCCcc..',
+  '..WWCCCCCCCccCCCCCCCWW..',
+  '..WW.CCCCCCccCCCCCC.WW..',
+  ...ECO_PERNAS
+];
+
+/** Braços para cima (pulo e comemoração): somem as mãos de baixo, sobem pelos lados. */
+const BRACOS_PRA_CIMA = [
+  { x: 2, y: 20, rows: ['__', '__'] }, { x: 20, y: 20, rows: ['__', '__'] },
+  { x: 0, y: 11, rows: ['WW.', 'cc.', 'cC.', 'cC.', '.cc'] },
+  { x: 21, y: 11, rows: ['.WW', '.cc', '.Cc', '.Cc', 'cc.'] }
+];
 
 export const HERO_ARTS = {
   eco_costas: {
-    mirror: true, rows: ECO_COSTAS,
+    rows: ECO_COSTAS,
     frames: {
-      passo: [{ x: 6, y: 22, rows: ['CCC.', 'CCC.', 'NNNN', '____'] }, { x: 14, y: 22, rows: ['.___', '.CCC', '.NNN'] }],
+      // Passo: o pé direito sobe e a ponta do cachecol balança.
+      passo: [
+        { x: 0, y: 23, rows: ['......cccc....NNNNN.....', '.....NNNNN....nnnnn.....', '.....nnnnn....._____....'] },
+        { x: 21, y: 16, rows: ['.r_', 'rQ_', 'Q._'] }
+      ],
       pulo: [
-        { x: 2, y: 13, rows: ['WW.', 'cc.', 'cc.', 'c..', '__.', '___', '___'] },
-        { x: 19, y: 13, rows: ['.WW', '.cc', '.cc', '..c', '.__', '___', '___'] },
-        { x: 5, y: 21, rows: ['.CCCCCCCCCCCCC.', '.NNN.......NNN.', '_______________', '_______________'] }
+        ...BRACOS_PRA_CIMA,
+        { x: 21, y: 16, rows: ['_rQ', '__r', '__Q'] },
+        { x: 0, y: 22, rows: ['......cccccccccccc......', '.....NNNNN....NNNNN.....', '.....nnnnn....nnnnn.....', '________________________'] }
       ],
       dor: [
-        { x: 0, y: 15, rows: ['WW.', 'ccc'] }, { x: 21, y: 15, rows: ['.WW', 'ccc'] },
-        { x: 2, y: 19, rows: ['___', '___'] }, { x: 19, y: 19, rows: ['___', '___'] }
+        { x: 2, y: 20, rows: ['__', '__'] }, { x: 20, y: 20, rows: ['__', '__'] },
+        { x: 0, y: 16, rows: ['WWc', '.cc'] }, { x: 21, y: 16, rows: ['ccW', 'cWW'] }
       ],
+      // Toca: mãos nos fones e uma nota musical saindo.
       toca: [
-        { x: 0, y: 4, rows: ['..rr', '.rrr', 'rrr.', 'rr..'] },
-        { x: 3, y: 17, rows: ['.WW', 'cc.', '_'] }
+        { x: 2, y: 20, rows: ['__', '__'] }, { x: 20, y: 20, rows: ['__', '__'] },
+        { x: 0, y: 10, rows: ['.W', 'WW', 'cc', 'c.'] }, { x: 22, y: 10, rows: ['W.', 'WW', 'cc', '.c'] },
+        { x: 0, y: 0, rows: ['.YYY', '.Y.Y', '.Y..', 'YY..', 'YY..'] }
       ]
     }
   },
   eco_frente: {
-    mirror: true, rows: ECO_FRENTE,
+    rows: ECO_FRENTE,
     frames: {
       viva: [
-        { x: 0, y: 11, rows: ['WW..', 'cc..', 'cc..', '.cc.', '..cc', '___c', '___'] },
-        { x: 20, y: 11, rows: ['..WW', '..cc', '..cc', '.cc.', 'cc..', 'c___', '.___'] },
-        { x: 9, y: 11, rows: ['KKKKKK', '.rrrr.'] }
+        ...BRACOS_PRA_CIMA,
+        { x: 8, y: 8, rows: ['WW....WW'] }, // olhos fechados de alegria
+        { x: 10, y: 10, rows: ['KKKK', '.rr.'] }
       ],
       triste: [
-        { x: 6, y: 7, rows: ['WWWW', 'KKWW'], mirror: true },
-        { x: 9, y: 11, rows: ['WKKKKW'] }
+        { x: 8, y: 7, rows: ['WW....WW', 'KK....KK'] },
+        { x: 10, y: 10, rows: ['.KK.', 'K..K'] }
       ]
     }
   }
 };
 
-const ECO_HEAD = ['....KKKKKKKK....', '...KWWWWWWWWK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.'];
+const ECO_HEAD = ['....KKKKKKKK....', '...KssssssssK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.'];
 const ECO_BODY = ['..KKWWWWWWWWKK..', '..KrrrrrrrrrrK..', '.KcKrrrrrrrrKcK.', '.KcKCCCCCCCCKcK.', '..KKCCCCCCCCKK..', '...KCCKKKKCCK...'];
 
 /** Sprites pequenos do protótipo (mundo aberto), com contorno próprio. */
 export const SMALL_ART = {
   eco_d1: [...ECO_HEAD, 'KCKWWKWWWWKWWKCK', 'KCKWWKWWWWKWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWbWWWWbWWKK.', ...ECO_BODY, '...KNNK..KNNK...', '...KKKK..KKKK...'],
   eco_d2: [...ECO_HEAD, 'KCKWWKWWWWKWWKCK', 'KCKWWKWWWWKWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWbWWWWbWWKK.', ...ECO_BODY, '..KNNK....KNNK..', '..KKKK.....KKK..'],
-  eco_u1: ['....KKKKKKKK....', '...KWCCCCCCWK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWWWWWWWWWKK.', ...ECO_BODY, '...KNNK..KNNK...', '...KKKK..KKKK...'],
-  eco_u2: ['....KKKKKKKK....', '...KWCCCCCCWK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWWWWWWWWWKK.', ...ECO_BODY, '..KNNK....KNNK..', '..KKKK.....KKK..'],
-  eco_s1: ['.....KKKKKK.....', '....KWWWWWWK....', '...KWWWWWWWWK...', '..KWWWWWWWWWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWWWWK..', '...KKWWWWWbWK...', '....KWWWWWWK....', '..rrKrrrrrrK....', '....KCCCCCCK....', '....KCKCCCCK....', '....KCCCCCCK....', '....KCCKKCCK....', '....KNNK.KNNK...', '....KKKK.KKKK...'],
-  eco_s2: ['.....KKKKKK.....', '....KWWWWWWK....', '...KWWWWWWWWK...', '..KWWWWWWWWWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWWWWK..', '...KKWWWWWbWK...', '....KWWWWWWK....', '.rr.KrrrrrrK....', '....KCCCCCCK....', '....KCCCKCCK....', '....KCCCCCCK....', '....KCCKKCCK....', '.....KNNKNNK....', '.....KKKKKKK....'],
+  eco_u1: ['....KKKKKKKK....', '...KssssssssK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWWWWWWWWWKK.', ...ECO_BODY, '...KNNK..KNNK...', '...KKKK..KKKK...'],
+  eco_u2: ['....KKKKKKKK....', '...KssssssssK...', '..KWWWWWWWWWWK..', '.KKWWWWWWWWWWKK.', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', 'KCKWWWWWWWWWWKCK', '.KKWWWWWWWWWWKK.', ...ECO_BODY, '..KNNK....KNNK..', '..KKKK.....KKK..'],
+  eco_s1: ['.....KKKKKK.....', '....KssssssK....', '...KWWWWWWWWK...', '..KWWWWWWWWWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWWWWK..', '...KKWWWWWbWK...', '....KWWWWWWK....', '..rrKrrrrrrK....', '....KCCCCCCK....', '....KCKCCCCK....', '....KCCCCCCK....', '....KCCKKCCK....', '....KNNK.KNNK...', '....KKKK.KKKK...'],
+  eco_s2: ['.....KKKKKK.....', '....KssssssK....', '...KWWWWWWWWK...', '..KWWWWWWWWWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWKWWK..', '..KCCKWWWWWWWK..', '...KKWWWWWbWK...', '....KWWWWWWK....', '.rr.KrrrrrrK....', '....KCCCCCCK....', '....KCCCKCCK....', '....KCCCCCCK....', '....KCCKKCCK....', '.....KNNKNNK....', '.....KKKKKKK....'],
   clave: ['...VVVVVV...', '..VVVVVVVV..', '.VVFFFFFFVV.', '.VFKFFFFKFV.', '.VFFFFFFFFV.', '.VFWWWWWWFV.', '..VWWWWWWV..', '.VVVWWWWVVV.', '.VVVVWWVVVV.', '.VVVVVVVVVV.', '..VV....VV..', '..KK....KK..'],
   bip: ['....GGGG....', '...GGGGGG...', '..GGGGGGGGG.', '...FFFFFF...', '...FKFFKF...', '...FFFFFF...', '....FFFF....', '...OOOOOO...', '..FOOOOOOF..', '...OOOOOO...', '...NN..NN...', '...KK..KK...'],
   sapo: ['............', '..GG....GG..', '.GWKG..GWKG.', '.GGGGGGGGGG.', 'GGGGGGGGGGGG', 'GGRRRRRRRRGG', '.GGGGGGGGGG.', '..GgGGGGgG..', '.gg.GGGG.gg.', '............'],
