@@ -27,6 +27,12 @@ export function createSfx(synths) {
           else synths.lead.triggerAttackRelease(f.toFrequency(), ev.qualidade === 'perfeito' ? 0.3 : 0.2, agora());
           break;
         }
+        case 'vitoria':
+          ['C5', 'E5', 'G5', 'C6', 'G5', 'C6'].forEach((n, i) => synths.fx.triggerAttackRelease(n, 0.09, agora() + i * 0.1));
+          break;
+        case 'derrota':
+          ['E4', 'D#4', 'D4', 'C#4'].forEach((n, i) => synths.fx2.triggerAttackRelease(n, 0.16, agora() + i * 0.18));
+          break;
         case 'respostaFim':
           if (ev.dano > 0) synths.crash.triggerAttackRelease(0.4, agora(), 0.9);
           break;

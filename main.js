@@ -167,7 +167,6 @@ function startBattle(bossId, chart = null) {
   ultimoChart = chart;
   battle = new BattleController({
     boss, song, noteTypes, effects, chart: chart || undefined, dificuldade: settings.dificuldade,
-    onWin: () => onBattleEnd(true), onLose: () => onBattleEnd(false)
   });
 
   bindBattleInput();
@@ -200,9 +199,7 @@ function bindBattleInput() {
 }
 
 function resizeStage() {
-  const w = window.innerWidth, h = window.innerHeight;
-  $('gl').width = w; $('gl').height = h; $('ui').width = w; $('ui').height = h;
-  if (view) view.resize(w, h);
+  if (view) view.resize(window.innerWidth, window.innerHeight);
 }
 window.addEventListener('resize', resizeStage);
 
@@ -267,7 +264,11 @@ function frame(ts) {
     battle.events.length = 0;
     view.render(battle, noteTypes, dt);
     updateHud();
-    if (battle.over) onBattleEnd(battle.vencedor);
+    if (battle.over) {
+      // Sequência final: o chefe pisca, perde a cor e afunda (ou Eco cai) antes da tela de resultado.
+      if (!view.fim) { if (player) player.stop(); view.comecarFim(battle.vencedor); if (sfx) sfx.handle({ tipo: battle.vencedor ? 'vitoria' : 'derrota' }); }
+      if (view.fim.t > (battle.vencedor ? 2.2 : 1.4)) onBattleEnd(battle.vencedor);
+    }
   }
   requestAnimationFrame(frame);
 }
@@ -291,3 +292,7 @@ function updateHud() {
 resizeStage();
 screen('sTitle');
 requestAnimationFrame(frame);
+
+// Atalho de desenvolvimento: ?demo=<chefe> abre a luta direto (útil para testar e tirar prints).
+const demo = new URLSearchParams(location.search).get('demo');
+if (demo && bosses.has(demo)) ensureAudio().then(() => startBattle(demo));
