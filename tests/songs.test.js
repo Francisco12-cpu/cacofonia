@@ -12,10 +12,10 @@ const songDefs = readContentDir(join(__dirname, '../content/songs')).filter((d) 
 const noteTypes = createNoteTypeRegistry(readContentDir(join(__dirname, '../content/notetypes')));
 
 describe('registro de músicas', () => {
-  it('carrega e valida as 8 músicas de chefe assadas do protótipo', () => {
+  it('carrega e valida as 8 músicas de chefe + 5 temas (título e mundos) assados do protótipo', () => {
     const registry = createSongRegistry(songDefs);
     expect(registry.ids().sort()).toEqual(
-      ['maestro', 'dj', 'fantasma', 'zumbido', 'cisne', 'orgao', 'colosso', 'silencio'].sort()
+      ['maestro', 'dj', 'fantasma', 'zumbido', 'cisne', 'orgao', 'colosso', 'silencio', 'vila', 'floresta', 'cidadela', 'titulo', 'final'].sort()
     );
   });
 

@@ -1,0 +1,13 @@
+{
+  "id": "fantasma",
+  "nome": "Fantasma",
+  "forma": "customizado",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#c9d6ff",
+  "instrumento": "voice",
+  "dano": 12,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "fantasma", "janelaInvisivel": [0.35, 0.7] }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bumerangue",
+  "nome": "Bumerangue",
+  "forma": "customizado",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#ffb000",
+  "instrumento": "arp",
+  "dano": 14,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "bumerangue", "amplitudePistas": 1.5 }
+}

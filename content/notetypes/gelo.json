@@ -1,0 +1,13 @@
+{
+  "id": "gelo",
+  "nome": "Gelo",
+  "forma": "customizado",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#bfe9ff",
+  "instrumento": "harm",
+  "dano": 10,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "gelo", "ativarEm": 0.9, "fatorLentidao": 0.5 }
+}

@@ -47,6 +47,15 @@ const FIFTH = [[null, .5], ['G4', .5], ['G4', .5], ['G4', .5], ['D#4', 2], [null
 const DIES = [['F5', 1], ['E5', 1], ['F5', 1], ['D5', 1], ['E5', 1], ['C5', 1], ['D5', 2], ['F5', 1], ['F5', .5], ['G5', .5], ['F5', 1], ['E5', 1], ['D5', 1], ['C5', .5], ['E5', .5], ['D5', 2],
   ['A5', 1], ['A5', .5], ['C6', .5], ['A5', 1], ['G5', 1], ['A5', 1], ['F5', 1], ['D5', 2], ['F5', 1], ['E5', 1], ['F5', 1], ['D5', 1], ['E5', 1], ['C5', 1], ['D5', 2]];
 
+const MORN_A=[['G5',1],['E5',.5],['D5',.5],['C5',.5],['D5',.5],['E5',1],['G5',1],['E5',.5],['D5',.5],['C5',.5],['D5',.5],['E5',.5],['D5',.5],
+ ['E5',.5],['G5',.5],['E5',.5],['G5',.5],['A5',1],['E5',.5],['A5',.5],['G5',1],['E5',.5],['D5',.5],['C5',2]];
+const MORN=[...MORN_A,...MORN_A.map(([n,d])=>[tr(n,7),d])];
+const NACHT=[['G5',1],[null,.5],['D5',.5],['G5',1],[null,.5],['D5',.5],['G5',.5],['D5',.5],['G5',.5],['B5',.5],['D6',2],
+ ['C6',1],[null,.5],['A5',.5],['C6',1],[null,.5],['A5',.5],['C6',.5],['A5',.5],['F#5',.5],['A5',.5],['D5',2]];
+const SYM40=[['D#5',.5],['D5',.5],['D5',1],['D#5',.5],['D5',.5],['D5',1],['D#5',.5],['D5',.5],['D5',.5],['A#5',1.5],
+ ['A#5',.5],['A5',.5],['G5',1],['G5',.5],['F5',.5],['D#5',1],['D#5',.5],['D5',.5],['C5',1],[null,2]];
+
+
 export const SONGS = {
   maestro: { mel: [...MK_A, ...MK_B], bpm: 100, bpmStep: 8, bpmMax: 180, drums: 'rock', bass: 'oct', arpFrom: 1, harmFrom: 1, fills: true, ch: { u: 2, s: ['Am', 'Am', 'B', 'A#', 'Am', 'Am', 'C', 'C', 'Em', 'Em', 'F#', 'F', 'Em', 'Em', 'G', 'G'] } },
   dj: { mel: [...TM_A, ...TM_B], bpm: 100, bpmStep: 6, bpmMax: 132, drums: 'break', bass: 'oompah', arpFrom: 1, harmFrom: 1, fills: true, ch: { u: 2, s: ['Am', 'Am', 'E', 'Am', 'Am', 'E', 'Am', 'E', 'C', 'G', 'C', 'G', 'Am', 'E', 'Am', 'E'] } },
@@ -55,7 +64,12 @@ export const SONGS = {
   cisne: { mel: SWAN, bpm: 96, bpmStep: 6, bpmMax: 126, drums: 'ballad', bass: 'walk', arpFrom: 0, harmFrom: 1, arpSlow: true, melOct: [0, 12], ch: { u: 2, s: ['Am', 'Am', 'Am', 'Am', 'Am', 'F', 'Am', 'Am', 'G', 'G', 'G', 'G', 'G', 'Em', 'E', 'E'] } },
   orgao: { mel: TOC, bpm: 92, bpmStep: 6, bpmMax: 130, drums: 'rock', drumsFrom: 1, bass: 'hold', arpFrom: 1, harmFrom: 0, fills: true, duty: [0.5, 0.25, 0.125], ch: { u: 4, s: ['Dm', 'A', 'Dm', 'A', 'Dm', 'A', 'Dm', 'A'] } },
   colosso: { mel: FIFTH, bpm: 108, bpmStep: 8, bpmMax: 152, drums: 'march', bass: 'oct', arpFrom: 1, harmFrom: 0, fills: true, ch: { u: 4, s: ['Cm', 'G', 'Fm', 'Cm', 'G', 'Fm', 'G', 'Cm'] } },
-  silencio: { mel: DIES, bpm: 110, bpmStep: 8, bpmMax: 172, drums: 'rock', bass: 'gallop', arpFrom: 1, harmFrom: 1, fills: true, silent: true, melOct: [0, 12], ch: { u: 2, s: ['Dm', 'Dm', 'C', 'Dm', 'Dm', 'F', 'C', 'Dm', 'F', 'F', 'Dm', 'Dm', 'Dm', 'Dm', 'C', 'Dm'] } }
+  silencio: { mel: DIES, bpm: 110, bpmStep: 8, bpmMax: 172, drums: 'rock', bass: 'gallop', arpFrom: 1, harmFrom: 1, fills: true, silent: true, melOct: [0, 12], ch: { u: 2, s: ['Dm', 'Dm', 'C', 'Dm', 'Dm', 'F', 'C', 'Dm', 'F', 'F', 'Dm', 'Dm', 'Dm', 'Dm', 'C', 'Dm'] } },
+  vila: { mel: ODE, bpm: 96, drums: 'soft', bass: 'oompah', arpFrom: 0, harmFrom: 0, arpSlow: true, ch: { u: 4, s: ['C', 'G', 'C', 'G', 'C', 'G', 'C', 'C', 'G', 'G', 'G', 'G', 'C', 'G', 'C', 'C'] } },
+  floresta: { mel: MORN, bpm: 84, drums: 'soft', bass: 'hold', arpFrom: 0, harmFrom: 0, arpSlow: true, ch: { u: 4, s: ['C', 'G', 'Am', 'C', 'G', 'D', 'Em', 'G'] } },
+  cidadela: { mel: NACHT, bpm: 118, drums: 'ballad', bass: 'oct', arpFrom: 0, harmFrom: 0, ch: { u: 4, s: ['G', 'G', 'D', 'D'] } },
+  titulo: { mel: SYM40, bpm: 112, drums: 'soft', bass: 'oct', arpFrom: 0, harmFrom: 0, arpSlow: true, ch: { u: 4, s: ['Gm', 'D', 'Gm', 'D'] } },
+  final: { mel: ODE, bpm: 124, drums: 'rock', bass: 'oct', arpFrom: 0, harmFrom: 0, fills: true, ch: { u: 4, s: ['C', 'G', 'C', 'G', 'C', 'G', 'C', 'C', 'G', 'G', 'G', 'G', 'C', 'G', 'C', 'C'] } },
 };
 for (const k in SONGS) {
   const s = SONGS[k]; let pos = 0; s.ev = []; s.map = new Map();
@@ -76,5 +90,10 @@ export const CREDITOS = {
   cisne: 'Camille Saint-Saëns — "O Cisne" (O Carnaval dos Animais), domínio público, arranjo 8-bit original.',
   orgao: 'Johann Sebastian Bach — "Tocata e Fuga em Ré menor", domínio público, arranjo 8-bit original.',
   colosso: 'Ludwig van Beethoven — Sinfonia nº 5, 1º movimento, domínio público, arranjo 8-bit original.',
-  silencio: 'Canto gregoriano — "Dies Irae", domínio público, arranjo 8-bit original.'
+  silencio: 'Canto gregoriano — "Dies Irae", domínio público, arranjo 8-bit original.',
+  vila: 'Ludwig van Beethoven — "Ode à Alegria" (Sinfonia nº 9), domínio público, arranjo 8-bit original.',
+  floresta: 'Edvard Grieg — "A Manhã" (Peer Gynt), domínio público, arranjo 8-bit original.',
+  cidadela: 'Wolfgang Amadeus Mozart — "Eine kleine Nachtmusik", domínio público, arranjo 8-bit original.',
+  titulo: 'Wolfgang Amadeus Mozart — Sinfonia nº 40, 1º movimento, domínio público, arranjo 8-bit original.',
+  final: 'Ludwig van Beethoven — "Ode à Alegria" (Sinfonia nº 9), domínio público, arranjo 8-bit original (versão festa).'
 };

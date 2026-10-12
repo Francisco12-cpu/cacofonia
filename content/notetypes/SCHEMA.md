@@ -6,7 +6,7 @@ Ver CACOFONIA-BIBLIA.md seção 3.1. Campos:
 |---------------|----------------------|-------------|-------|
 | id            | string               | sim         | único, usado como nome do arquivo |
 | nome          | string               | sim         | exibido no editor |
-| forma         | enum                 | sim         | `esfera \| prisma \| losango \| placa \| anel \| customizado` |
+| forma         | enum                 | sim         | `esfera \| prisma \| losango \| placa \| anel \| customizado` — `customizado` usa a silhueta do movimento (bumerangue, fantasma, ímã, gelo, divisora; ver engine/render2d/noteArt.js) |
 | pistas        | inteiro >= 1         | sim         | largura padrão em pistas (chart pode sobrescrever) |
 | altura        | enum                 | sim         | `baixa` (pulável) \| `alta` (bloqueia pulo) |
 | duracao       | número >= 0          | sim         | 0 = instantânea; >0 = padrão em batidas para notas longas |

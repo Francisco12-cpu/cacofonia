@@ -1,0 +1,13 @@
+{
+  "id": "ima",
+  "nome": "Ímã",
+  "forma": "customizado",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#e0304a",
+  "instrumento": "brass",
+  "dano": 14,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "ima", "ativarEm": 0.75, "direcaoPistas": 1 }
+}

@@ -1,4 +1,6 @@
 import { SPAN, laneX } from './Stage3D.js';
+import { sprite } from '../../engine/render2d/sprites.js';
+import { ramp, snapToPalette } from '../../engine/render2d/palette.js';
 
 /** Aplica os efeitos visuais (seção 3.4) ao contêiner da cena via CSS — câmera/tela, não o palco 3D em si. */
 export function applyEffectsToDom(stageEl, fx, reducedFx) {
@@ -50,6 +52,7 @@ export class BattleView {
   reset() {
     this.vl = 2; this.shake = 0; this.hurtFlash = 0; this.bossHit = 0; this.bossAtk = 0; this.heroDor = 0;
     this.fim = null; this.flash = 0; this.ultimaBatida = -99;
+    this.hpVis = null; this.bhpVis = null; this.tremeHp = 0; this.tremeChefe = 0;
   }
 
   /** Início da sequência final (chefe derrotado / herói caído). */
@@ -297,6 +300,7 @@ export class BattleView {
       c.globalAlpha = 1;
     }
     if (this.flash > 0) { c.globalAlpha = this.flash * (this.reducedFx ? 0.3 : 0.7); c.fillStyle = '#fff'; c.fillRect(0, 0, W, H); c.globalAlpha = 1; }
+    this._hud(c, battle);
     if (this.fim) return;
 
     if (nb < 0) this._contagem(c, nb);
@@ -314,7 +318,7 @@ export class BattleView {
     if (battle.combo >= 5) {
       c.textAlign = 'right';
       const pul = battle.combo % 10 === 0 ? 1 : 0;
-      texto(c, `x${battle.combo}`, W - 6, 34 - pul, battle.combo >= 30 ? '#f5ff3d' : '#2be9ff');
+      texto(c, `x${battle.combo}`, W - 6, 32 - pul, battle.combo >= 30 ? '#f5ff3d' : '#2be9ff');
       c.textAlign = 'center';
     }
 
@@ -328,6 +332,47 @@ export class BattleView {
     }
   }
 
+  /** HUD em pixel art: retratos, barras segmentadas e rastro branco do dano recente. */
+  _hud(c, battle) {
+    const W = this.w, dt = 1 / 60;
+    if (this.hpVis === null) { this.hpVis = battle.hp; this.bhpVis = battle.bhp; }
+    if (battle.hp < this.hpVis - 0.5 && this.tremeHp <= 0) this.tremeHp = 0.3;
+    if (battle.bhp < this.bhpVis - 0.5 && this.tremeChefe <= 0) this.tremeChefe = 0.4;
+    // O rastro espera um instante e depois desce devagar até o valor real.
+    this.hpVis = battle.hp >= this.hpVis ? battle.hp : this.hpVis - Math.max(0.4, (this.hpVis - battle.hp) * 0.04);
+    this.bhpVis = battle.bhp >= this.bhpVis ? battle.bhp : this.bhpVis - Math.max(1, (this.bhpVis - battle.bhp) * 0.03);
+    this.tremeHp = Math.max(0, this.tremeHp - dt); this.tremeChefe = Math.max(0, this.tremeChefe - dt);
+
+    const larg = Math.max(60, Math.floor(W / 2) - 44), y = 6;
+    const barra = (x, frac, rastro, cor, espelha, treme) => {
+      const ox = treme > 0 ? Math.round((Math.random() - 0.5) * 3) : 0, R = ramp(cor);
+      c.fillStyle = '#000'; c.fillRect(x - 2 + ox, y - 2, larg + 4, 12);
+      c.fillStyle = '#f4f0ff'; c.fillRect(x - 1 + ox, y - 1, larg + 2, 10);
+      c.fillStyle = '#1a0610'; c.fillRect(x + ox, y, larg, 8);
+      const segs = Math.floor(larg / 4);
+      for (let i = 0; i < segs; i++) {
+        const f = (i + 1) / segs, xi = espelha ? x + larg - (i + 1) * 4 + 1 : x + i * 4;
+        let col = null;
+        if (f <= frac + 1e-6) col = i % 2 ? R.base : R.luz;
+        else if (f <= rastro + 1e-6) col = '#ffffff';
+        if (col) { c.fillStyle = col; c.fillRect(xi + ox, y + 1, 3, 6); c.fillStyle = R.sombra; c.fillRect(xi + ox, y + 5, 3, 2); }
+      }
+    };
+    const eco = sprite('eco_frente', this.tremeHp > 0 ? 'triste' : 'base');
+    c.fillStyle = '#000'; c.fillRect(3, 2, 22, 18); c.fillStyle = '#140c2c'; c.fillRect(4, 3, 20, 16);
+    c.drawImage(eco, 3, 3, 20, 16, 4, 3, 20, 16);
+    barra(30, battle.hp / battle.maxHp, this.hpVis / battle.maxHp, '#f5ff3d', false, this.tremeHp);
+    c.textAlign = 'left'; texto(c, String(battle.hp), 30, y + 11, battle.hp / battle.maxHp < 0.3 && Math.floor(this.t * 4) % 2 ? '#ff2f8e' : '#fff');
+
+    const corChefe = snapToPalette(battle.boss.cor);
+    const bspr = sprite(battle.boss.sprite, this.tremeChefe > 0 ? 'hurt' : 'base');
+    c.fillStyle = '#000'; c.fillRect(W - 25, 2, 22, 18); c.fillStyle = '#140c2c'; c.fillRect(W - 24, 3, 20, 16);
+    c.drawImage(bspr, 7, 0, 20, 16, W - 24, 3, 20, 16);
+    barra(W - 30 - larg, battle.bhp / battle.bmax, this.bhpVis / battle.bmax, corChefe, true, this.tremeChefe);
+    c.textAlign = 'right'; texto(c, battle.boss.nome.toUpperCase(), W - 30, y + 11, corChefe);
+    c.textAlign = 'center';
+  }
+
   _contagem(c, nb) {
     const n = Math.ceil(-nb);
     if (n < 1 || n > 4) return;
@@ -335,7 +380,7 @@ export class BattleView {
     const txt = n === 1 ? 'JÁ!' : String(n - 1);
     c.save();
     const esc = 3 + Math.round((1 - f) * 2);
-    c.translate(Math.round(this.w / 2), Math.round(this.h * 0.58)); c.scale(esc, esc);
+    c.translate(Math.round(this.w / 2), Math.round(this.h * 0.47)); c.scale(esc, esc);
     c.globalAlpha = 1 - f * 0.7;
     texto(c, txt, 0, -4, '#fff', '#ff2f8e');
     c.restore();

@@ -33,6 +33,12 @@ export function createSfx(synths) {
         case 'derrota':
           ['E4', 'D#4', 'D4', 'C#4'].forEach((n, i) => synths.fx2.triggerAttackRelease(n, 0.16, agora() + i * 0.18));
           break;
+        case 'voz':
+          synths.voice.triggerAttackRelease(ev.freq, 0.03, agora());
+          break;
+        case 'reviver':
+          ['C5', 'G5', 'C6'].forEach((n, i) => synths.fx2.triggerAttackRelease(n, 0.1, agora() + i * 0.08));
+          break;
         case 'respostaFim':
           if (ev.dano > 0) synths.crash.triggerAttackRelease(0.4, agora(), 0.9);
           break;

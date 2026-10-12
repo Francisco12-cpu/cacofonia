@@ -1,7 +1,9 @@
 /**
  * Entrada unificada: teclado+mouse, toque e controle (Gamepad API) — seção
  * 6 da bíblia. Emite ações discretas (`moveLeft`, `jump`, `dive`, `collect`,
- * `pause`, `interact`, `menu`) e um vetor analógico contínuo (`getAxis()`)
+ * `pause`, `interact`, `menu`), ações de navegação de menu (`navUp`,
+ * `navDown`, `navLeft`, `navRight`, `confirm`, `back`) e um vetor analógico
+ * contínuo (`getAxis()`)
  * para o movimento livre do mundo aberto. Também rastreia qual dispositivo
  * foi usado por último, para a UI escolher os ícones certos.
  */
@@ -50,6 +52,10 @@ export class InputManager {
     const k = e.key.toLowerCase();
     this.lastDevice = 'teclado';
     if (KEY_TO_DIR[k]) this.held.add(KEY_TO_DIR[k]);
+    // Navegação de menu: setas repetem quando seguradas; ESC/Backspace voltam.
+    const NAV = { arrowup: 'navUp', arrowdown: 'navDown', arrowleft: 'navLeft', arrowright: 'navRight' };
+    if (NAV[k]) this.emit(NAV[k]);
+    if ((k === 'escape' || k === 'backspace') && !e.repeat) this.emit('back');
     if (e.repeat) return;
     if (k === ' ' || k === 'arrowup' || k === 'w') this.emit('jump');
     else if (k === 'arrowdown' || k === 's') this.emit('dive');
@@ -161,8 +167,17 @@ export class InputManager {
 
     const pressed = (i) => !!pad.buttons[i]?.pressed;
     const rising = (i) => pressed(i) && !prev[i];
-    if (rising(0)) { this.emit('jump'); this.lastDevice = 'controle'; }       // A / Cross
-    if (rising(1)) { this.emit('dive'); this.lastDevice = 'controle'; }      // B / Circle
+    if (rising(0)) { this.emit('jump'); this.emit('confirm'); this.lastDevice = 'controle'; }  // A / Cross
+    if (rising(1)) { this.emit('dive'); this.emit('back'); this.lastDevice = 'controle'; }     // B / Circle
+    // Navegação de menu pelo D-pad ou analógico, com repetição ao segurar.
+    const ny = y > 0.5 ? 1 : y < -0.5 ? -1 : 0, nx = x > 0.5 ? 1 : x < -0.5 ? -1 : 0;
+    const agora = performance.now(), nav = this._nav || (this._nav = { x: 0, y: 0, t: 0 });
+    if (ny !== nav.y || nx !== nav.x || (ny || nx) && agora - nav.t > (nav.rep ? 140 : 380)) {
+      nav.rep = (ny === nav.y && nx === nav.x);
+      nav.t = agora; nav.y = ny; nav.x = nx;
+      if (ny) this.emit(ny > 0 ? 'navDown' : 'navUp');
+      if (nx) this.emit(nx > 0 ? 'navRight' : 'navLeft');
+    }
     if (rising(2) || rising(7)) { this.emit('collect'); this.lastDevice = 'controle'; } // X/Square ou RT
     if (rising(9)) { this.emit('pause'); this.lastDevice = 'controle'; }     // Start
     if (rising(3)) { this.emit('interact'); this.lastDevice = 'controle'; }  // Y/Triangle

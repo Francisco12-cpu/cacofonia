@@ -7,11 +7,10 @@
  * verdade, sempre reto — só a forma/cor mudava por tipo).
  *
  * `bumerangue`, `fantasma`, `ima`, `gelo` e `divisora` são os movimentos
- * "sugeridos" da seção 3.1: o plugin em si já funciona (matemática pura,
- * testada), mas o motor de batalha (game/battle) ainda só liga a saída
- * `laneOffset` — os efeitos extras (`intangivel`, `puxaJogador`,
- * `lentidaoAoAtingir`, `divideEm`) ficam registrados na interface para o
- * próximo passo de implementação, já que nenhum dos 8 chefes atuais os usa.
+ * "sugeridos" da seção 3.1. Além de `laneOffset`, devolvem efeitos extras
+ * (`opacidade`, `puxaJogador`, `lentidaoAoAtingir`, `divideEm`) que o
+ * BattleController aplica em `_efeitosDeMovimento`. Os tipos de nota
+ * correspondentes ficam em content/notetypes e podem ser usados no editor.
  */
 
 function reto() {
@@ -33,7 +32,7 @@ function bumerangue(p, def) {
 function fantasma(p, def) {
   const [de, ate] = def.janelaInvisivel ?? [0.35, 0.65];
   const intangivel = p >= de && p <= ate;
-  return { laneOffset: 0, intangivel, opacidade: intangivel ? 0 : 1 };
+  return { laneOffset: 0, intangivel, opacidade: intangivel ? (def.opacidadeMinima ?? 0.12) : 1 };
 }
 
 function ima(p, def) {
@@ -47,7 +46,8 @@ function gelo(p, def) {
 
 function divisora(p, def) {
   const ponto = def.pontoDivisao ?? 0.5;
-  return { laneOffset: 0, divideEm: p >= ponto ? (def.pistasAlvo ?? null) : null };
+  // Sem `pistasAlvo`, divide para as duas pistas vizinhas (`true`).
+  return { laneOffset: 0, divideEm: p >= ponto ? (def.pistasAlvo ?? true) : null };
 }
 
 const MOVEMENTS = { reto, zigzag, bumerangue, fantasma, ima, gelo, divisora };

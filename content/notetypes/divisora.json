@@ -1,0 +1,13 @@
+{
+  "id": "divisora",
+  "nome": "Divisora",
+  "forma": "customizado",
+  "pistas": 1,
+  "altura": "baixa",
+  "duracao": 0,
+  "cor": "#3de07a",
+  "instrumento": "lead",
+  "dano": 12,
+  "avisoBatidas": "auto",
+  "movimento": { "tipo": "divisora", "pontoDivisao": 0.5 }
+}

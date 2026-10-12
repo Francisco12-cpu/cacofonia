@@ -98,13 +98,73 @@ export function estrela() {
   return img;
 }
 
+/** Bumerangue: meia-lua em "V". */
+function bumerangue(cor) {
+  const img = novo(16, 14);
+  pintarMascara(img, (x, y) => {
+    const dx = x - 7.5, dy = y - 6.5;
+    return (Math.abs(dx) - dy * 0.9 <= 6 && Math.abs(dx) - dy * 0.9 >= 1.5 && y >= 1 && y <= 12 && Math.abs(dx) <= 7.5);
+  }, cor);
+  brilhoEm(img, 2, 3);
+  return img;
+}
+
+/** Fantasma: fantasminha com olhos e barra ondulada. */
+function fantasminha(cor) {
+  const img = novo(14, 15);
+  pintarMascara(img, (x, y) => {
+    if (y < 7) return (x - 6.5) ** 2 + (y - 6.5) ** 2 <= 6.4 ** 2;
+    return x >= 0.3 && x <= 12.7 && !(y >= 12 && (x + (y > 13 ? 1 : 0)) % 4 === 0);
+  }, cor);
+  for (const x of [4, 8]) { put(img, x, 6, PALETTE.K); put(img, x, 7, PALETTE.K); put(img, x + 1, 6, PALETTE.K); put(img, x + 1, 7, PALETTE.K); }
+  return img;
+}
+
+/** Ímã: ferradura com pontas claras. */
+function ima(cor) {
+  const img = novo(14, 15);
+  pintarMascara(img, (x, y) => {
+    const dx = x - 6.5, dy = y - 6.5;
+    const arco = y <= 6.5 && dx * dx + dy * dy <= 42 && dx * dx + dy * dy >= 9;
+    const pernas = y > 6.5 && y <= 14 && ((x >= 0 && x <= 3.5) || (x >= 9.5 && x <= 13));
+    return arco || pernas;
+  }, cor);
+  for (let x = 1; x <= 3; x++) for (const y of [12, 13]) { put(img, x, y, PALETTE.W); put(img, x + 9, y, PALETTE.W); }
+  return img;
+}
+
+/** Gelo: floco de neve (cruz + diagonais). */
+function floco(cor) {
+  const img = novo(15, 15), c = 7;
+  pintarMascara(img, (x, y) => {
+    const dx = Math.abs(x - c), dy = Math.abs(y - c);
+    return (dx <= 1 && dy <= 7) || (dy <= 1 && dx <= 7) || (Math.abs(dx - dy) <= 1 && dx <= 5) || (dx <= 2.5 && dy <= 2.5);
+  }, cor);
+  put(img, c, c, PALETTE.W);
+  return img;
+}
+
+/** Divisora: orbe com uma fenda no meio, prestes a se partir. */
+function divisoraIcon(cor) {
+  const img = novo(15, 14);
+  pintarMascara(img, (x, y) => (x - 7) ** 2 + (y - 6.5) ** 2 <= 6.4 ** 2 && Math.abs(x - 7) >= 1, cor);
+  brilhoEm(img, 3, 3); brilhoEm(img, 9, 3);
+  return img;
+}
+
+const POR_MOVIMENTO = { bumerangue, fantasma: fantasminha, ima, gelo: floco, divisora: divisoraIcon };
+
 /**
  * Ícone de um tipo de nota. `quadro` só importa para a moeda.
- * Tipo: { forma, altura, pistas, coletavel, duracaoVariavel, cor }.
+ * Tipo: { forma, altura, pistas, coletavel, duracaoVariavel, cor, movimento }.
+ * Movimentos especiais (bumerangue, fantasma, ímã, gelo, divisora) têm
+ * silhueta própria, para nunca dependerem só da cor.
  */
 export function noteIcon(tipo, quadro = 0) {
   const cor = snapToPalette(tipo.cor);
   if (tipo.coletavel) return moeda(cor, quadro);
+  const porMov = POR_MOVIMENTO[tipo.movimento?.tipo];
+  if (porMov && tipo.pistas < 2) return porMov(cor);
   if (tipo.pistas >= 2 || tipo.forma === 'placa' || tipo.duracaoVariavel) return placa(cor);
   if (tipo.forma === 'prisma' && tipo.altura === 'alta') return parede(cor);
   if (tipo.forma === 'losango') return losango(cor);

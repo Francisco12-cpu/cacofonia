@@ -29,7 +29,7 @@ let ultimoBossIdx = 0; // volta ao mesmo chefe depois de "TESTAR"
  *    batalha. Testar a luta direto do editor e exportar/importar em JSON
  *    são mantidos do protótipo, adaptados ao novo esquema.
  */
-export function openEditor({ $, songs, bosses, noteTypes, synths, onExit, onTest }) {
+export function openEditor({ $, songs, bosses, noteTypes, synths, lista, onExit, onTest }) {
   // Reabrir o editor não pode acumular ouvintes (antes, cada abertura somava
   // mais um, e um toque punha e tirava a mesma nota).
   if (abortAnterior) abortAnterior.abort();
@@ -37,7 +37,7 @@ export function openEditor({ $, songs, bosses, noteTypes, synths, onExit, onTest
   const sinal = { signal: abort.signal };
 
   const charts = loadCharts();
-  const bossList = bosses.all();
+  const bossList = lista || bosses.all();
   const state = { bossIdx: Math.min(ultimoBossIdx, bossList.length - 1), scroll: 0, ppb: 46, tool: noteTypes.ids()[0], playing: false, ev: [], melodia: [], linhas: [] };
 
   const cv = $('edCv');

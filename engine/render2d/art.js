@@ -499,3 +499,39 @@ export const SMALL_ART = {
   robo: ['.....KK.....', '.....KR.....', '..KKKKKKKK..', '..KMMMMMMK..', '..KMCMMCMK..', '..KMMMMMMK..', '..KMKKKKMK..', '..KKKKKKKK..', '.KMMMMMMMMK.', '.KMKYMMYKMK.', '..KMMKKMMK..', '..KK....KK..'],
   pistao: ['...OOOOOO...', '..OOOOOOOO..', '..KCCKKCCK..', '..FFFFFFFF..', '..FFFKKFFF..', '...FFFFFF...', '..BBBBBBBB..', '.FBBMBBMBBF.', '..BBBBBBBB..', '..BBBBBBBB..', '...NN..NN...', '...KK..KK...']
 };
+
+/** Ícones de dispositivo para as dicas de controle (seção 6: "os ícones certos para cada um"). */
+export const ICON_ART = {
+  teclado: [
+    'KKKKKKKKKKKKK',
+    'KMSMSMSMSMSMK',
+    'KMMMMMMMMMMMK',
+    'KMSMSMSMSMSMK',
+    'KMMMMMMMMMMMK',
+    'KMMSSSSSSSMMK',
+    'KKKKKKKKKKKKK'
+  ],
+  controle: [
+    '..KKKKKKKKK..',
+    '.KmmmmmmmmmK.',
+    'KmmSmmmmmGmmK',
+    'KmSSSmmmRmCmK',
+    'KmmSmmmmmYmmK',
+    'KmmmmKKKmmmmK',
+    '.KmmK...KmmK.',
+    '..KK.....KK..'
+  ],
+  toque: [
+    '...KK.....',
+    '..KFFK....',
+    '..KFFK....',
+    '..KFFKKKK.',
+    '..KFFFFFFK',
+    'KKKFFFFFFK',
+    'KFFFFFFFFK',
+    'KFFFFFFFFK',
+    '.KFFFFFFK.',
+    '..KFFFFK..',
+    '..KKKKKK..'
+  ]
+};

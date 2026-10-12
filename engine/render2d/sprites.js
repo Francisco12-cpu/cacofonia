@@ -1,4 +1,4 @@
-import { BOSS_ART, HERO_ARTS, SMALL_ART } from './art.js';
+import { BOSS_ART, HERO_ARTS, SMALL_ART as SMALL_BASE, ICON_ART } from './art.js';
 import { frameGrid, rasterize } from './pixelart.js';
 
 /**
@@ -12,6 +12,7 @@ import { frameGrid, rasterize } from './pixelart.js';
  *   sprite('eco_u1')                  -> sprite pequeno do mundo aberto
  */
 const DEFS = { ...BOSS_ART, ...HERO_ARTS };
+const SMALL_ART = { ...SMALL_BASE, ...ICON_ART };
 const cache = new Map();
 
 function toCanvas({ w, h, data }) {
@@ -53,3 +54,11 @@ export function getSpriteCache() {
 }
 
 export const SPR_TXT = SMALL_ART;
+
+/** Ícone/sprite como URL de imagem (para <img> na interface HTML). */
+const urlCache = new Map();
+export function spriteUrl(id, frame = 'base', opts = {}) {
+  const k = `${id}|${frame}|${opts.tint || ''}|${opts.gray || 0}`;
+  if (!urlCache.has(k)) urlCache.set(k, sprite(id, frame, opts).toDataURL());
+  return urlCache.get(k);
+}

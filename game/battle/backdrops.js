@@ -174,7 +174,7 @@ const CENARIOS = {
   pipes: {
     longe: { animada: true, pintar(c, w, h, t) {
       faixas(c, w, 0, h, ['#0c0202', '#1a0505', '#260808']);
-      const cx = w / 2, cy = h * 0.36, cores = [P.R, P.Y, P.C, P.G, P.p, P.O];
+      const cx = w / 2, cy = h * 0.6, cores = [P.R, P.Y, P.C, P.G, P.p, P.O];
       circulo(c, cx, cy, 26, '#2a1010');
       for (let s = 0; s < 12; s++) for (let r = 6; r < 24; r += 1) {
         const a = s * Math.PI / 6 + r * 0.01;

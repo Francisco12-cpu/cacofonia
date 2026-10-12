@@ -13,7 +13,7 @@ describe('registro de tipos de nota', () => {
     const defs = readContentDir(contentDir);
     const registry = createNoteTypeRegistry(defs);
     const ids = registry.ids().sort();
-    expect(ids).toEqual(['dourada', 'larga', 'longa', 'normal', 'onda', 'parede', 'zigue-zague'].sort());
+    expect(ids).toEqual(['dourada', 'larga', 'longa', 'normal', 'onda', 'parede', 'zigue-zague', 'bumerangue', 'fantasma', 'ima', 'gelo', 'divisora'].sort());
   });
 
   it('rejeita um tipo sem os campos obrigatórios', () => {

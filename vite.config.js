@@ -7,7 +7,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     target: 'es2020',
-    assetsInlineLimit: 0
+    assetsInlineLimit: 0,
+    // Three.js já vai num pedaço separado, carregado só na 1ª luta; o resto (Tone.js + jogo) fica em ~580 kB.
+    chunkSizeWarningLimit: 700
   },
   test: {
     environment: 'node',

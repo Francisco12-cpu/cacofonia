@@ -11,7 +11,7 @@ Ver CACOFONIA-BIBLIA.md seções 3.4 e 3.5.
   "tier": 1,                  // multiplicador de dificuldade (1/2/3), como no protótipo
   "final": false,
   "cor": "#ff2f8e",
-  "sprite": "maestro",        // id do sprite (ver assets/sprites — migração de arte pendente)
+  "sprite": "maestro",        // id do sprite em engine/render2d/art.js (BOSS_ART, 32×32, quadros atk/hurt)
   "cenario": { "sky": "#1a0626", "bg": "stars" },
   "efeitosEspeciais": [
     { "tipo": "camera-giro", "aPartirDaVolta": 2 }
