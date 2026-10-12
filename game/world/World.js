@@ -1,4 +1,5 @@
 import { sprite } from '../../engine/render2d/sprites.js';
+import { ler, gravar } from '../storage.js';
 import { CHEFES, QUEM, DIARIO, AMULETOS, INTRO, FINAL, MUNDOS, INICIO, ANDA, PRESENTES, TEMAS, falasDe } from './dados.js';
 
 /**
@@ -25,8 +26,8 @@ export function createWorld(deps) {
 
   // ---------- save ----------
   const novoJogo = () => ({ libertos: [], mundo: 'vila', x: INICIO.x, y: INICIO.y, amuletos: [], equip: [], diario: [], final: false });
-  function carregar() { try { const s = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); return s && Array.isArray(s.libertos) ? { ...novoJogo(), ...s } : null; } catch { return null; } }
-  function salvar() { if (jogo) localStorage.setItem(SAVE_KEY, JSON.stringify(jogo)); }
+  function carregar() { const s = ler(SAVE_KEY, null); return s && Array.isArray(s.libertos) ? { ...novoJogo(), ...s } : null; }
+  function salvar() { if (jogo) gravar(SAVE_KEY, jogo); }
   const libertos = () => new Set(jogo.libertos);
   const nivel = () => 1 + jogo.libertos.length;
   const hpMax = () => 100 + (nivel() - 1) * 10 + (jogo.equip.includes('fole') ? 20 : 0);

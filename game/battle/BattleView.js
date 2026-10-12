@@ -1,6 +1,6 @@
 import { SPAN, laneX } from './Stage3D.js';
 import { sprite } from '../../engine/render2d/sprites.js';
-import { ramp, snapToPalette } from '../../engine/render2d/palette.js';
+import { ramp } from '../../engine/render2d/palette.js';
 
 /** Aplica os efeitos visuais (seção 3.4) ao contêiner da cena via CSS — câmera/tela, não o palco 3D em si. */
 export function applyEffectsToDom(stageEl, fx, reducedFx) {
@@ -109,7 +109,7 @@ export class BattleView {
     this.heroDor = Math.max(0, this.heroDor - dt);
     this.flash = Math.max(0, this.flash - dt * 2.5);
     if (this.fim) this.fim.t += dt;
-    const stage = this.stage, boss = battle.boss, nb = battle.nowBeat;
+    const stage = this.stage, nb = battle.nowBeat;
     const fx = battle.responsePhase || this.fim ? {} : battle.fxState;
     const red = this.reducedFx;
     // Pulso da batida (seção 2: "tudo pulsa com a música"): 1 no início de cada batida, decai até 0.
@@ -141,14 +141,14 @@ export class BattleView {
     stage.beatLines.forEach((m, i) => {
       const bt = b0 + i, z = -(bt - nb) * u, down = bt % 4 === 0;
       m.position.set(0, 0.012, z); m.scale.set(1, down ? 3 : 1, down ? 1.6 : 1);
-      m.material.opacity = down ? 0.7 : 0.25; m.material.color.set(down ? boss.cor : '#ffffff');
+      m.material.opacity = down ? 0.7 : 0.25; m.material.color.copy(down ? stage.corBoss : stage.white);
       m.visible = z > -SPAN - 2;
     });
     stage.pillars.forEach((m, i) => {
       const side = i % 2 ? 1 : -1, bt = Math.ceil(nb / 2) * 2 + Math.floor(i / 2) * 2, z = -(bt - nb) * u, h = (1.2 + (i % 4) * 0.4) * (1 + kick * 0.18);
       m.scale.set(1, h, 1); m.position.set(side * 3.3, h / 2, z); m.visible = z > -SPAN - 4 && z < 2;
     });
-    stage.edgeMat.color.set(boss.cor).lerp(stage.white, kick * 0.6);
+    stage.edgeMat.color.copy(stage.corBoss).lerp(stage.white, kick * 0.6);
     stage.hl.position.x = laneX(this.vl);
     stage.hl.material.opacity = 0.08 + kick * 0.1;
 
@@ -161,7 +161,7 @@ export class BattleView {
     applyEffectsToDom(this._stageEl || (this._stageEl = document.getElementById('stage')), fx, red);
     stage.renderer.render(stage.scene, stage.cam);
 
-    this._drawOverlay(battle, nb, fx);
+    this._drawOverlay(battle, nb, fx, dt);
   }
 
   _notas(battle, noteTypes, nb) {
@@ -288,7 +288,7 @@ export class BattleView {
     });
   }
 
-  _drawOverlay(battle, nb, fx) {
+  _drawOverlay(battle, nb, fx, dt) {
     const c = this.ui.getContext('2d'), W = this.w, H = this.h;
     c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, W, H); c.imageSmoothingEnabled = false;
     c.font = FONT; c.textAlign = 'center'; c.textBaseline = 'top';
@@ -300,7 +300,7 @@ export class BattleView {
       c.globalAlpha = 1;
     }
     if (this.flash > 0) { c.globalAlpha = this.flash * (this.reducedFx ? 0.3 : 0.7); c.fillStyle = '#fff'; c.fillRect(0, 0, W, H); c.globalAlpha = 1; }
-    this._hud(c, battle);
+    this._hud(c, battle, dt);
     if (this.fim) return;
 
     if (nb < 0) this._contagem(c, nb);
@@ -333,8 +333,9 @@ export class BattleView {
   }
 
   /** HUD em pixel art: retratos, barras segmentadas e rastro branco do dano recente. */
-  _hud(c, battle) {
-    const W = this.w, dt = 1 / 60;
+  /** @param dt segundos reais do quadro (antes era 1/60 fixo: a tremida durava menos em 144 Hz e mais em 30 fps). */
+  _hud(c, battle, dt) {
+    const W = this.w;
     if (this.hpVis === null) { this.hpVis = battle.hp; this.bhpVis = battle.bhp; }
     if (battle.hp < this.hpVis - 0.5 && this.tremeHp <= 0) this.tremeHp = 0.3;
     if (battle.bhp < this.bhpVis - 0.5 && this.tremeChefe <= 0) this.tremeChefe = 0.4;
@@ -364,7 +365,7 @@ export class BattleView {
     barra(30, battle.hp / battle.maxHp, this.hpVis / battle.maxHp, '#f5ff3d', false, this.tremeHp);
     c.textAlign = 'left'; texto(c, String(battle.hp), 30, y + 11, battle.hp / battle.maxHp < 0.3 && Math.floor(this.t * 4) % 2 ? '#ff2f8e' : '#fff');
 
-    const corChefe = snapToPalette(battle.boss.cor);
+    const corChefe = this.stage.corBossHud;
     const bspr = sprite(battle.boss.sprite, this.tremeChefe > 0 ? 'hurt' : 'base');
     c.fillStyle = '#000'; c.fillRect(W - 25, 2, 22, 18); c.fillStyle = '#140c2c'; c.fillRect(W - 24, 3, 20, 16);
     c.drawImage(bspr, 7, 0, 20, 16, W - 24, 3, 20, 16);
@@ -402,7 +403,7 @@ export class BattleView {
 
   /** Mini-pauta (seção 4.1): a melodia que o jogador está construindo com as douradas. */
   _miniPauta(c, battle) {
-    const notas = battle.melody.snapshot();
+    const notas = battle.melody.lista;
     const W = Math.min(96, this.w * 0.4), x0 = 8, y0 = Math.round(this.h * 0.2), gap = 3;
     c.fillStyle = 'rgba(8,5,26,0.8)'; c.fillRect(x0 - 4, y0 - 4, W + 8, gap * 4 + 16);
     c.fillStyle = '#3b3478'; c.fillRect(x0 - 4, y0 - 4, W + 8, 1); c.fillRect(x0 - 4, y0 + gap * 4 + 11, W + 8, 1);

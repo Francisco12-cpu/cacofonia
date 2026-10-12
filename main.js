@@ -1,12 +1,8 @@
 import '@fontsource/press-start-2p/400.css';
-import * as Tone from 'tone';
 import { loadNoteTypeRegistry } from './engine/notes/loadFromContent.js';
 import { loadSongRegistry } from './engine/songs/loadFromContent.js';
 import { loadBossRegistry } from './engine/bosses/loadFromContent.js';
 import { createEffectRegistry } from './engine/effects/plugins.js';
-import { createSynthRig } from './engine/audio/synths.js';
-import { createSongPlayer } from './engine/audio/songPlayer.js';
-import { createSfx } from './engine/audio/sfx.js';
 import { InputManager } from './engine/input/InputManager.js';
 import { sprite, spriteUrl } from './engine/render2d/sprites.js';
 import { calcularNota, melhorNota } from './engine/battle/nota.js';
@@ -16,6 +12,7 @@ import { MenuBg } from './game/ui/menuBg.js';
 import { criarTransicao } from './game/ui/transicao.js';
 import { createWorld } from './game/world/World.js';
 import { CHEFES } from './game/world/dados.js';
+import { ler, gravar } from './game/storage.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -31,17 +28,14 @@ const chefesEmOrdem = () => bosses.all().slice().sort((a, b) => posicao(a.id) - 
 
 // ---------- ajustes ----------
 const PADRAO = { dificuldade: 'normal', reducedFx: false, vol: 80, crt: true, vibra: true };
-function loadSettings() {
-  try { return { ...PADRAO, ...JSON.parse(localStorage.getItem('cacofonia-set') || '{}') }; } catch { return { ...PADRAO }; }
-}
-const settings = loadSettings();
-function saveSettings() { localStorage.setItem('cacofonia-set', JSON.stringify(settings)); }
+const settings = { ...PADRAO, ...ler('cacofonia-set', {}) };
+function saveSettings() { gravar('cacofonia-set', settings); }
 function applyVolume() { Tone.getDestination().volume.value = settings.vol <= 0 ? -Infinity : 20 * Math.log10(settings.vol / 100); }
 function applyCrt() { $('crt').classList.toggle('hidden', !settings.crt); }
 applyCrt();
 
 const RECORDES_KEY = 'cacofonia-recordes';
-const recordes = (() => { try { return JSON.parse(localStorage.getItem(RECORDES_KEY) || '{}'); } catch { return {}; } })();
+const recordes = ler(RECORDES_KEY, {});
 
 // ---------- entrada ----------
 const input = new InputManager();
@@ -85,14 +79,23 @@ $('creditsRoll').innerHTML = [
 ].join('');
 
 // ---------- áudio ----------
-let synths = null, sfx = null, audioReady = false;
-async function ensureAudio() {
-  if (audioReady) return;
-  await Tone.start();
-  synths = createSynthRig();
-  sfx = createSfx(synths);
-  applyVolume();
-  audioReady = true;
+/** Tone.js (o maior pedaço do bundle) só é baixado no primeiro toque — o título abre bem mais rápido. */
+let Tone = null, createSongPlayer = null;
+let synths = null, sfx = null, audioReady = false, audioPromise = null;
+function ensureAudio() {
+  // Guarda a promessa: dois toques rápidos ("clique + Enter") criavam dois conjuntos de sintetizadores.
+  audioPromise ??= (async () => {
+    const [tone, synthMod, playerMod, sfxMod] = await Promise.all([
+      import('tone'), import('./engine/audio/synths.js'), import('./engine/audio/songPlayer.js'), import('./engine/audio/sfx.js')
+    ]);
+    Tone = tone; createSongPlayer = playerMod.createSongPlayer;
+    await Tone.start();
+    synths = synthMod.createSynthRig();
+    sfx = sfxMod.createSfx(synths);
+    applyVolume();
+    audioReady = true;
+  })().catch((e) => { audioPromise = null; throw e; });
+  return audioPromise;
 }
 const blip = (nota = 'E6', dur = 0.02) => { if (synths) synths.fx.triggerAttackRelease(nota, dur, Tone.now() + 0.005); };
 
@@ -175,7 +178,8 @@ $('sDiff').onclick = () => { settings.dificuldade = DIFFS[(DIFFS.indexOf(setting
 $('sRed').onchange = (e) => { settings.reducedFx = e.target.checked; menuBg.reduzido = settings.reducedFx; saveSettings(); };
 $('sCrt').onchange = (e) => { settings.crt = e.target.checked; applyCrt(); saveSettings(); };
 $('sVib').onchange = (e) => { settings.vibra = e.target.checked; if (settings.vibra && navigator.vibrate) navigator.vibrate(40); saveSettings(); };
-$('sVol').oninput = (e) => { settings.vol = +e.target.value; if (synths) applyVolume(); saveSettings(); };
+$('sVol').oninput = (e) => { settings.vol = +e.target.value; if (synths) applyVolume(); };
+$('sVol').onchange = () => saveSettings(); // salva ao soltar, não a cada passo do arraste
 $('sFull').onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); };
 $('bsBack').onclick = () => { menuBg.destaque('#ff2f8e'); tocarMusica('titulo'); screen('sTitle'); };
 $('errOk').onclick = () => voltarAoTitulo();
@@ -286,6 +290,7 @@ async function carregarPalco() {
 }
 
 async function startBattle(bossId, chart = null, extras = {}) {
+  await ensureAudio();
   if (!(await carregarPalco())) { screen('sErr'); return; }
   pararMusica();
   mundo.esconder();
@@ -342,6 +347,8 @@ function togglePause() {
   if (paused) { Tone.Transport.pause(); screen('sPause'); } else { Tone.Transport.start('+0.1'); screen(null); }
 }
 $('pRes').onclick = togglePause;
+// Aba escondida: o navegador para os quadros, mas a música seguia — na volta, todas as notas acertavam de uma vez.
+document.addEventListener('visibilitychange', () => { if (document.hidden && gameState === 'battle' && !paused) togglePause(); });
 $('pauseBtn').onclick = togglePause;
 $('pRetry').onclick = () => { paused = false; if (player) player.stop(); const l = ultimaLuta; transicao(() => startBattle(l.bossId, l.chart, l.extras)); };
 $('pQuit').onclick = () => { paused = false; if (player) player.stop(); transicao(() => { setBattleUi(false); voltarDaLuta(false); }); };
@@ -383,7 +390,7 @@ function onBattleEnd(venceu) {
       const antes = recordes[b.boss.id];
       const novo = melhorNota(antes, nota.letra);
       const bateu = novo !== antes;
-      if (bateu) { recordes[b.boss.id] = novo; localStorage.setItem(RECORDES_KEY, JSON.stringify(recordes)); }
+      if (bateu) { recordes[b.boss.id] = novo; gravar(RECORDES_KEY, recordes); }
       $('wGrade').textContent = nota.letra; $('wGrade').className = `grade ${nota.letra}`;
       $('wRecord').classList.toggle('hidden', !bateu || !antes);
       countUp($('wC'), b.maxCombo); countUp($('wDouradas'), b.stats.douradasColetadas);
@@ -457,6 +464,11 @@ menuBg.reduzido = settings.reducedFx;
 let gameState = 'menu';
 let lastTs = 0, lastDevice = null, tempoNaLuta = 0;
 function frame(ts) {
+  // Agenda o próximo quadro antes: um erro aqui dentro congelava o jogo inteiro para sempre.
+  requestAnimationFrame(frame);
+  try { passo(ts); } catch (e) { console.error(e); }
+}
+function passo(ts) {
   const dt = Math.min(0.05, (ts - (lastTs || ts)) / 1000);
   lastTs = ts;
   input.pollGamepad();
@@ -484,10 +496,9 @@ function frame(ts) {
       if (view.fim.t > (battle.vencedor ? 2.2 : 1.4)) onBattleEnd(battle.vencedor);
     }
   }
-  requestAnimationFrame(frame);
 }
 function updateHud() {
-  const collecting = battle.notes.some((n) => !n.judged && noteTypes.get(n.type).coletavel && n.lanes.includes(battle.lane) && Math.abs(battle.nowBeat - n.beat) < 0.3);
+  const collecting = battle.podeColetar;
   $('atkBtn').classList.toggle('now', collecting || !!battle.responsePhase);
   const rotulo = battle.responsePhase ? 'RESPONDER' : (collecting ? 'AGORA!' : 'COLETAR');
   if ($('atkBtn').textContent !== rotulo) $('atkBtn').textContent = rotulo;

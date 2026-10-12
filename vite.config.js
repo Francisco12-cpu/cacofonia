@@ -13,6 +13,8 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['tests/**/*.test.js']
+    include: ['tests/**/*.test.js'],
+    // Os testes não compartilham estado mutável entre arquivos: reaproveitar os workers poupa ~1,7 s.
+    isolate: false
   }
 });

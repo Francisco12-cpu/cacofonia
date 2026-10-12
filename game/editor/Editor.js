@@ -1,11 +1,12 @@
 import { buildChoreographyFromMelody } from '../../engine/battle/choreography.js';
 import { createSongPlayer } from '../../engine/audio/songPlayer.js';
 import { notaNaEscala } from '../../engine/songs/schema.js';
-import { carregarMelodias, salvarMelodia, songComMelodiaDoJogador } from './customSongs.js';
+import { carregarMelodias, salvarMelodia, songComMelodiaDoJogador, notaDeMelodiaValida } from './customSongs.js';
+import { ler, gravar } from '../storage.js';
 
 const CHARTS_KEY = 'cacofonia-charts';
-function loadCharts() { try { return JSON.parse(localStorage.getItem(CHARTS_KEY) || '{}'); } catch { return {}; } }
-function saveCharts(charts) { localStorage.setItem(CHARTS_KEY, JSON.stringify(charts)); }
+function loadCharts() { const c = ler(CHARTS_KEY, {}); return c && typeof c === 'object' ? c : {}; }
+function saveCharts(charts) { gravar(CHARTS_KEY, charts); }
 
 const NOMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const NI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -40,6 +41,11 @@ export function openEditor({ $, songs, bosses, noteTypes, synths, lista, onExit,
   const bossList = lista || bosses.all();
   const state = { bossIdx: Math.min(ultimoBossIdx, bossList.length - 1), scroll: 0, ppb: 46, tool: noteTypes.ids()[0], playing: false, ev: [], melodia: [], linhas: [] };
 
+  /** Evento de coreografia bem formado: um tipo inválido derrubaria o editor e a luta (noteTypes.get lança erro). */
+  const eventoValido = (o) => !!o && Number.isFinite(o.beat) && o.beat >= 0 && noteTypes.has(o.type)
+    && Array.isArray(o.lanes) && o.lanes.length > 0 && o.lanes.every((l) => Number.isInteger(l) && l >= 0 && l <= 4)
+    && (o.len === undefined || (Number.isFinite(o.len) && o.len >= 0));
+
   const cv = $('edCv');
   const ctx = cv.getContext('2d');
 
@@ -51,7 +57,8 @@ export function openEditor({ $, songs, bosses, noteTypes, synths, lista, onExit,
     ultimoBossIdx = state.bossIdx;
     const boss = currentBoss();
     state.melodia = songComMelodiaDoJogador(songOriginal()).trilhas.melodia.map((e) => ({ ...e }));
-    const custom = charts[boss.id];
+    // Coreografia salva corrompida (ex.: importada de uma versão antiga) é ignorada em vez de travar o editor.
+    const custom = Array.isArray(charts[boss.id]) && charts[boss.id].every(eventoValido) ? charts[boss.id] : null;
     state.ev = (custom || buildChoreographyFromMelody(currentSong(), noteTypes)).map((o) => ({ ...o, lanes: o.lanes.slice() }));
     state.custom = !!custom;
     montarLinhas();
@@ -261,9 +268,12 @@ export function openEditor({ $, songs, bosses, noteTypes, synths, lista, onExit,
     try {
       const d = JSON.parse(t);
       const idx = bossList.findIndex((b) => b.id === d.boss);
-      if (idx < 0 || !Array.isArray(d.chart)) throw new Error('formato inválido');
+      if (idx < 0 || !Array.isArray(d.chart) || !d.chart.every(eventoValido)) throw new Error('formato inválido');
+      if (d.melodia !== undefined && (!Array.isArray(d.melodia) || !d.melodia.every(notaDeMelodiaValida))) throw new Error('melodia inválida');
       if (state.playing) playStop();
-      state.bossIdx = idx; charts[d.boss] = d.chart; saveCharts(charts);
+      state.bossIdx = idx;
+      charts[d.boss] = d.chart.map((o) => ({ beat: o.beat, lanes: o.lanes.slice(), type: o.type, len: o.len || 0, ...(typeof o.nota === 'string' ? { nota: o.nota } : {}) }));
+      saveCharts(charts);
       if (Array.isArray(d.melodia)) salvarMelodia(songs.get(bossList[idx].musica).id, d.melodia);
       load();
     } catch { alert('Não consegui ler essa coreografia.'); }

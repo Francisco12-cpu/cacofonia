@@ -39,22 +39,6 @@ export function sprite(id, frame = 'base', opts = {}) {
   return c;
 }
 
-/** Compatibilidade com o código antigo: mapa id -> canvas base (e versão branca). */
-let compat = null;
-export function getSpriteCache() {
-  if (!compat) {
-    const SPR = {}, SPR_W = {};
-    for (const id of [...Object.keys(DEFS), ...Object.keys(SMALL_ART)]) {
-      Object.defineProperty(SPR, id, { get: () => sprite(id), enumerable: true });
-      Object.defineProperty(SPR_W, id, { get: () => sprite(id, 'base', { tint: '#ffffff' }), enumerable: true });
-    }
-    compat = { SPR, SPR_W };
-  }
-  return compat;
-}
-
-export const SPR_TXT = SMALL_ART;
-
 /** Ícone/sprite como URL de imagem (para <img> na interface HTML). */
 const urlCache = new Map();
 export function spriteUrl(id, frame = 'base', opts = {}) {

@@ -59,6 +59,8 @@ export class BattleController {
     this.janelasFeitas = new Set();
     this.responsePhase = null;
     this.nowBeat = -4;
+    /** Há uma dourada coletável agora na pista do jogador (para o botão "AGORA!"). */
+    this.podeColetar = false;
     this.APPROACH_PADRAO = 4;
     this.setChart(chart || buildChoreographyFromMelody(song, noteTypes));
   }
@@ -104,10 +106,12 @@ export class BattleController {
   /** Garante que notas cujo instante de aviso já chegou estejam agendadas (`pending` -> `notes`). */
   ensureChart(nb) {
     this._estenderGrafico(nb + 16);
+    // Os efeitos são os mesmos para todas as notas do quadro: avalia uma vez só, não uma por nota pendente.
+    const fx = this.effects.evaluate(this.boss.efeitosEspeciais, this.nowBeat, this._loopAtual());
     for (const c of this.pending) {
       if (c._agendado) continue;
       const tipo = this.noteTypes.get(c.type);
-      const ap = this._approachFor(tipo, c);
+      const ap = this._approachFor(tipo, fx);
       if (nb < c.beat - ap - 0.05) continue;
       c._agendado = true;
       // Nota que já deveria estar no meio do caminho (ex.: logo depois de uma
@@ -120,8 +124,7 @@ export class BattleController {
     if (this.pending.length > 256) this.pending = this.pending.filter((c) => !c._agendado);
   }
 
-  _approachFor(tipo, evento) {
-    const fx = this.effects.evaluate(this.boss.efeitosEspeciais, this.nowBeat, this._loopAtual());
+  _approachFor(tipo, fx) {
     const extra = this.amuletos.has('oculos') ? 0.75 : 0;
     return (fx.fast ? 2.6 : (tipo.avisoBatidasResolvido ?? this.APPROACH_PADRAO)) + extra;
   }
@@ -156,8 +159,13 @@ export class BattleController {
 
   _tryCollectGolden() {
     const janelaBoa = 0.30, janelaPerfeita = 0.07;
-    const candidatos = this.notes.filter((n) => !n.judged && this.noteTypes.get(n.type).coletavel && n.lanes.includes(this.lane));
-    const alvo = candidatos.find((n) => Math.abs(this.nowBeat - n.beat) <= janelaBoa);
+    // A dourada mais próxima do tempo (não a primeira da lista), senão duas douradas seguidas eram julgadas contra a errada.
+    let alvo = null, melhor = janelaBoa;
+    for (const n of this.notes) {
+      if (n.judged || !n.lanes.includes(this.lane) || !this.noteTypes.get(n.type).coletavel) continue;
+      const d = Math.abs(this.nowBeat - n.beat);
+      if (d <= melhor) { melhor = d; alvo = n; }
+    }
     if (!alvo) { this.events.push({ tipo: 'coletaVazia' }); return false; }
     alvo.judged = true;
     this.douradasOferecidas++;
@@ -278,6 +286,7 @@ export class BattleController {
   update(nowBeat, dt) {
     if (this.over) return;
     this.nowBeat = nowBeat;
+    this.podeColetar = false;
     this.inv = Math.max(0, this.inv - dt);
     this.lento = Math.max(0, this.lento - dt);
     this.cooldownPista = Math.max(0, this.cooldownPista - dt);
@@ -290,7 +299,7 @@ export class BattleController {
       }
     }
     for (const f of this.floats) f.t += dt;
-    this.floats = this.floats.filter((f) => f.t < 1);
+    compactar(this.floats, (f) => f.t < 1);
     if (this.banner) { this.banner.t += dt; if (this.banner.t > 1.5) this.banner = null; }
     if (this.fala) { this.fala.t += dt; if (this.fala.t > 2.6) this.fala = null; }
 
@@ -331,7 +340,7 @@ export class BattleController {
           this.stats.douradasVistas++;
           if (n.lanes.includes(this.lane) && !this.jumpSafe()) this.hurt(tipo.dano, 'DOURADA');
           else this.combo++;
-        }
+        } else if (n.lanes.includes(this.lane) && Math.abs(nowBeat - n.beat) < 0.3) this.podeColetar = true;
         continue;
       }
       const { damage, combo } = judgeInstantNote(n, tipo, { lane: this.lane, jumpSafe: this.jumpSafe(), nowBeat, lagBeats: 0.02 });
@@ -342,8 +351,15 @@ export class BattleController {
     }
     if (this._novasNotas.length) { this.notes.push(...this._novasNotas); this._novasNotas.length = 0; }
     this.maxCombo = Math.max(this.maxCombo, this.combo);
-    this.notes = this.notes.filter((n) => nowBeat < n.beat + (n.len || 0) + 1.5);
+    compactar(this.notes, (n) => nowBeat < n.beat + (n.len || 0) + 1.5);
   }
 }
 
 function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+/** Filtra o array no lugar (sem criar um novo a cada quadro). */
+function compactar(arr, manter) {
+  let k = 0;
+  for (const x of arr) if (manter(x)) arr[k++] = x;
+  arr.length = k;
+}

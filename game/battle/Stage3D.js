@@ -113,7 +113,7 @@ export class Stage3D {
     Object.assign(this, {
       renderer, scene, cam, floor, pisoTex, edgeMat, torreCv, torreTex, hl, beatLines, pillars, notesGroup, boss, hero, ghosts,
       speed, bursts, shadow, shadowMat, disco, rings, pools: {}, texCache: new Map(), noteTexCache: new Map(), camadas: [],
-      white: new THREE.Color(0xffffff), iw: 1, ih: 1, escala: 1
+      white: new THREE.Color(0xffffff), corBoss: new THREE.Color(0xff2f8e), corBossHud: '#ff2f8e', _v: new THREE.Vector3(), iw: 1, ih: 1, escala: 1
     });
   }
 
@@ -179,6 +179,8 @@ export class Stage3D {
     this.edgeMat.color.copy(col);
     this.pisoTex.image = pisoCanvas(boss.cor); this.pisoTex.needsUpdate = true;
     this.corChefe = boss.cor;
+    // Convertidas uma vez por luta (antes eram reconvertidas da string a cada quadro).
+    this.corBoss.copy(col); this.corBossHud = snapToPalette(boss.cor);
     this.pintarTorre(0);
 
     for (const c of this.camadas) { s.remove(c.mesh); c.mesh.geometry.dispose(); c.mesh.material.map.dispose(); c.mesh.material.dispose(); }
@@ -238,7 +240,7 @@ export class Stage3D {
   }
 
   toScreen(x, y, z, w, h) {
-    const v = new THREE.Vector3(x, y, z).project(this.cam);
+    const v = this._v.set(x, y, z).project(this.cam);
     return [(v.x * 0.5 + 0.5) * w, (-v.y * 0.5 + 0.5) * h];
   }
 }

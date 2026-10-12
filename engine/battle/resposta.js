@@ -24,6 +24,8 @@ export function createMelodyCollector() {
   return {
     collect(nota, beat) { notas.push({ nota, beat }); },
     snapshot() { return notas.slice(); },
+    /** As notas coletadas sem copiar (somente leitura) — para desenhar a cada quadro sem alocar. */
+    get lista() { return notas; },
     clear() { notas.length = 0; },
     get tamanho() { return notas.length; }
   };

@@ -79,6 +79,8 @@ export function createSongPlayer(synths, song, opts = {}) {
       repeatId = null;
       Tone.Transport.stop();
       Tone.Transport.cancel(0);
+      // A aceleração por volta é agendada com antecedência; sem isto ela vazava para a próxima música.
+      Tone.Transport.bpm.cancelScheduledValues(0);
       Tone.Transport.position = 0;
     },
     /**
